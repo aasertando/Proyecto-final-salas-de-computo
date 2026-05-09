@@ -20,16 +20,19 @@ public class vistaPrograma extends javax.swing.JFrame {
      */
     public vistaPrograma() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public vistaPrograma(estudiante e) {
         initComponents();
         txt2.setText("Bienvenido " + e.getNombre());
+        this.setLocationRelativeTo(null);
     }
     
     public vistaPrograma(profesor p) {
         initComponents();
         txt3.setText("Bienvenido " + p.getNombre());
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -45,6 +48,13 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgAdmin = new javax.swing.JPanel();
         txt1 = new javax.swing.JLabel();
         btnAdminCerrarSesion = new javax.swing.JButton();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        bgAñadirEstudiante = new javax.swing.JPanel();
+        bgEliminarEstudiante = new javax.swing.JPanel();
+        bgAñadirProfesor = new javax.swing.JPanel();
+        bgEliminarProfesor = new javax.swing.JPanel();
+        bgActivarUsuario = new javax.swing.JPanel();
+        bgDesactivarUsuario = new javax.swing.JPanel();
         bgEstudiante = new javax.swing.JPanel();
         txt2 = new javax.swing.JLabel();
         btnEstudianteCerrarSesion = new javax.swing.JButton();
@@ -59,15 +69,96 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminCerrarSesion.setText("Cerrar sesión");
         btnAdminCerrarSesion.addActionListener(this::btnAdminCerrarSesionActionPerformed);
 
+        javax.swing.GroupLayout bgAñadirEstudianteLayout = new javax.swing.GroupLayout(bgAñadirEstudiante);
+        bgAñadirEstudiante.setLayout(bgAñadirEstudianteLayout);
+        bgAñadirEstudianteLayout.setHorizontalGroup(
+            bgAñadirEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+        bgAñadirEstudianteLayout.setVerticalGroup(
+            bgAñadirEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Añadir estudiante", bgAñadirEstudiante);
+
+        javax.swing.GroupLayout bgEliminarEstudianteLayout = new javax.swing.GroupLayout(bgEliminarEstudiante);
+        bgEliminarEstudiante.setLayout(bgEliminarEstudianteLayout);
+        bgEliminarEstudianteLayout.setHorizontalGroup(
+            bgEliminarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+        bgEliminarEstudianteLayout.setVerticalGroup(
+            bgEliminarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Eliminar estudiante", bgEliminarEstudiante);
+
+        javax.swing.GroupLayout bgAñadirProfesorLayout = new javax.swing.GroupLayout(bgAñadirProfesor);
+        bgAñadirProfesor.setLayout(bgAñadirProfesorLayout);
+        bgAñadirProfesorLayout.setHorizontalGroup(
+            bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+        bgAñadirProfesorLayout.setVerticalGroup(
+            bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Añadir profesor", bgAñadirProfesor);
+
+        javax.swing.GroupLayout bgEliminarProfesorLayout = new javax.swing.GroupLayout(bgEliminarProfesor);
+        bgEliminarProfesor.setLayout(bgEliminarProfesorLayout);
+        bgEliminarProfesorLayout.setHorizontalGroup(
+            bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+        bgEliminarProfesorLayout.setVerticalGroup(
+            bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Eliminar profesor", bgEliminarProfesor);
+
+        javax.swing.GroupLayout bgActivarUsuarioLayout = new javax.swing.GroupLayout(bgActivarUsuario);
+        bgActivarUsuario.setLayout(bgActivarUsuarioLayout);
+        bgActivarUsuarioLayout.setHorizontalGroup(
+            bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+        bgActivarUsuarioLayout.setVerticalGroup(
+            bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Activar usuario", bgActivarUsuario);
+
+        javax.swing.GroupLayout bgDesactivarUsuarioLayout = new javax.swing.GroupLayout(bgDesactivarUsuario);
+        bgDesactivarUsuario.setLayout(bgDesactivarUsuarioLayout);
+        bgDesactivarUsuarioLayout.setHorizontalGroup(
+            bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
+        );
+        bgDesactivarUsuarioLayout.setVerticalGroup(
+            bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Desactivar usuario", bgDesactivarUsuario);
+
         javax.swing.GroupLayout bgAdminLayout = new javax.swing.GroupLayout(bgAdmin);
         bgAdmin.setLayout(bgAdminLayout);
         bgAdminLayout.setHorizontalGroup(
             bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 628, Short.MAX_VALUE)
-                .addComponent(btnAdminCerrarSesion)
+                .addGroup(bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane2)
+                    .addGroup(bgAdminLayout.createSequentialGroup()
+                        .addComponent(txt1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAdminCerrarSesion)))
                 .addContainerGap())
         );
         bgAdminLayout.setVerticalGroup(
@@ -77,7 +168,9 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdminCerrarSesion)
                     .addComponent(txt1))
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Admin", bgAdmin);
@@ -94,7 +187,7 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgEstudianteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 517, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
                 .addComponent(btnEstudianteCerrarSesion)
                 .addContainerGap())
         );
@@ -122,7 +215,7 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgProfesorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
                 .addComponent(btnProfesorCerrarSesion)
                 .addContainerGap())
         );
@@ -199,13 +292,20 @@ public class vistaPrograma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bgActivarUsuario;
     private javax.swing.JPanel bgAdmin;
+    private javax.swing.JPanel bgAñadirEstudiante;
+    private javax.swing.JPanel bgAñadirProfesor;
+    private javax.swing.JPanel bgDesactivarUsuario;
+    private javax.swing.JPanel bgEliminarEstudiante;
+    private javax.swing.JPanel bgEliminarProfesor;
     private javax.swing.JPanel bgEstudiante;
     private javax.swing.JPanel bgProfesor;
     private javax.swing.JButton btnAdminCerrarSesion;
     private javax.swing.JButton btnEstudianteCerrarSesion;
     private javax.swing.JButton btnProfesorCerrarSesion;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt2;
     private javax.swing.JLabel txt3;
