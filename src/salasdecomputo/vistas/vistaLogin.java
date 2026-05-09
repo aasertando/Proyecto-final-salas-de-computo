@@ -4,6 +4,10 @@
  */
 package salasdecomputo.vistas;
 
+import javax.swing.JOptionPane;
+import salasdecomputo.clases.estudiante;
+import salasdecomputo.clases.estudianteDAO;
+
 /**
  *
  * @author aser
@@ -35,7 +39,7 @@ public class vistaLogin extends javax.swing.JFrame {
         inputUsuario = new javax.swing.JTextField();
         txt2 = new javax.swing.JLabel();
         inputContraseña = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,8 +54,9 @@ public class vistaLogin extends javax.swing.JFrame {
         txt2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         txt2.setText("Contraseña:");
 
-        jButton1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jButton1.setText("Ingresar");
+        btnIngresar.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(this::btnIngresarActionPerformed);
 
         javax.swing.GroupLayout divInputsLayout = new javax.swing.GroupLayout(divInputs);
         divInputs.setLayout(divInputsLayout);
@@ -59,7 +64,7 @@ public class vistaLogin extends javax.swing.JFrame {
             divInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(divInputsLayout.createSequentialGroup()
                 .addGap(161, 161, 161)
-                .addComponent(jButton1)
+                .addComponent(btnIngresar)
                 .addContainerGap(166, Short.MAX_VALUE))
             .addGroup(divInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(divInputsLayout.createSequentialGroup()
@@ -79,7 +84,7 @@ public class vistaLogin extends javax.swing.JFrame {
             divInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divInputsLayout.createSequentialGroup()
                 .addContainerGap(160, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnIngresar)
                 .addContainerGap())
             .addGroup(divInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(divInputsLayout.createSequentialGroup()
@@ -131,6 +136,49 @@ public class vistaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+        
+        String usr = inputUsuario.getText();
+        String pass = inputContraseña.getText();
+        
+        if (!(inputContraseña.getText().isEmpty()) && !(inputUsuario.getText().isEmpty())){
+            
+            if (estudianteDAO.buscarEstudiante(usr, pass) != null){
+                
+                estudiante e = estudianteDAO.buscarEstudiante(usr, pass);
+                
+                System.out.println("id: " + e.getId());
+                System.out.println("nombre: " + e.getNombre());
+                System.out.println("contraseña: " + e.getContraseña());
+                System.out.println("activo: " + e.isActivo());
+                System.out.println("carrera: " + e.getCarrera());
+                
+                if (e.isActivo()){
+                    vistaPrograma ventana = new vistaPrograma();
+                    ventana.setVisible(true);
+                    this.setVisible(false);
+                }
+                
+//                else if (){
+//                    
+//                } 
+                
+                
+                
+                
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Este usuario no está activo\npidale a un administrador que lo active para poder ingresar");
+                }
+            } else{
+                JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña invalidos.");
+            } 
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -158,11 +206,11 @@ public class vistaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JPanel divInputs;
     private javax.swing.JLabel img1;
     private javax.swing.JTextField inputContraseña;
     private javax.swing.JTextField inputUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt2;
     // End of variables declaration//GEN-END:variables

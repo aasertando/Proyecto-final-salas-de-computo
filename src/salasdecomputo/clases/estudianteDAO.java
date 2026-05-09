@@ -20,7 +20,7 @@ public class estudianteDAO {
         
         try{
 
-            PreparedStatement ps = con.prepareStatement("SELECT *  FROM estudiante WHERE usuario = ? AND contraseña = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT *  FROM estudiantes WHERE nombre = ? AND contraseña = ?");
             ps.setString(1, usr);
             ps.setString(2, pass);
 
