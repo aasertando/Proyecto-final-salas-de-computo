@@ -21,8 +21,10 @@ public class SalasDeComputo {
         vistaLogin ventana = new vistaLogin();
         ventana.setVisible(true);
         
-        coneccionDB claseDB = new coneccionDB();
-        claseDB.conectarDB();
+//        coneccionDB claseDB = new coneccionDB();
+//        claseDB.conectarDB();
+//        
+        coneccionDB.conectarDB();
         
     }
     
