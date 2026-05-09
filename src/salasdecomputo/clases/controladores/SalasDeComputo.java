@@ -20,12 +20,7 @@ public class SalasDeComputo {
         // TODO code application logic here
         vistaLogin ventana = new vistaLogin();
         ventana.setVisible(true);
-        
-//        coneccionDB claseDB = new coneccionDB();
-//        claseDB.conectarDB();
-//        
-        coneccionDB.conectarDB();
-        
+
     }
     
 }
