@@ -7,13 +7,15 @@ package salasdecomputo.vistas;
 import javax.swing.JOptionPane;
 import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
+import salasdecomputo.clases.profesor;
+import salasdecomputo.clases.profesorDAO;
 
 /**
  *
  * @author aser
  */
 public class vistaLogin extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(vistaLogin.class.getName());
 
     /**
@@ -138,45 +140,60 @@ public class vistaLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        
+
         String usr = inputUsuario.getText();
         String pass = inputContraseña.getText();
-        
-        if (!(inputContraseña.getText().isEmpty()) && !(inputUsuario.getText().isEmpty())){
-            
-            if (estudianteDAO.buscarEstudiante(usr, pass) != null){
-                
+
+        if (!(inputContraseña.getText().isEmpty()) && !(inputUsuario.getText().isEmpty())) {
+
+            if (estudianteDAO.buscarEstudiante(usr, pass) != null) {
+
                 estudiante e = estudianteDAO.buscarEstudiante(usr, pass);
-                
+
                 System.out.println("id: " + e.getId());
                 System.out.println("nombre: " + e.getNombre());
                 System.out.println("contraseña: " + e.getContraseña());
                 System.out.println("activo: " + e.isActivo());
                 System.out.println("carrera: " + e.getCarrera());
-                
-                if (e.isActivo()){
+
+                if (e.isActivo()) {
                     vistaPrograma ventana = new vistaPrograma();
                     ventana.setVisible(true);
                     this.setVisible(false);
-                }
-                
-//                else if (){
-//                    
-//                } 
-                
-                
-                
-                
-                else{
+                } else if (!(e.isActivo())) {
                     JOptionPane.showMessageDialog(rootPane, "Este usuario no está activo\npidale a un administrador que lo active para poder ingresar");
                 }
-            } else{
+            } else if (profesorDAO.buscarProfesor(usr, pass) != null) {
+
+                profesor p = profesorDAO.buscarProfesor(usr, pass);
+
+                System.out.println("id: " + p.getId());
+                System.out.println("nombre: " + p.getNombre());
+                System.out.println("contraseña: " + p.getContraseña());
+                System.out.println("activo: " + p.isActivo());
+                System.out.println("carrera: " + p.getDepartamento());
+                System.out.println("horaInicio: " + p.getHoraInicio());
+                System.out.println("horaFIn: " + p.getHoraFin());
+
+                if (p.isActivo()) {
+                    vistaPrograma ventana = new vistaPrograma();
+                    ventana.setVisible(true);
+                    this.setVisible(false);
+                } else if (!(p.isActivo())) {
+                    JOptionPane.showMessageDialog(rootPane, "Este usuario no está activo\npidale a un administrador que lo active para poder ingresar");
+                }
+            } else if (usr.equals("admin") && pass.equals("123")) {
+                vistaPrograma ventana = new vistaPrograma();
+                ventana.setVisible(true);
+                this.setVisible(false);
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña invalidos.");
-            } 
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos.");
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

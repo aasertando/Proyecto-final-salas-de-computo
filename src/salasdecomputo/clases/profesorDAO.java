@@ -14,7 +14,7 @@ public class profesorDAO {
     
     //si regresa null los credenciales ingresados son invalidos
     public static profesor buscarProfesor(String usr, String pass){
-        
+
         Connection con = coneccionDB.conectarDB();
         
         try{
@@ -38,8 +38,6 @@ public class profesorDAO {
                 profesor p = new profesor(id, nombre, contraseña, activo, departamento, horaInicio, horaFin);
                 return p;
             }
-            
-            
             
         }catch(SQLException e){
             System.out.println(e.getMessage());
