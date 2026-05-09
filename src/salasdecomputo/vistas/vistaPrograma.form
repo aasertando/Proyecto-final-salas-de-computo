@@ -52,7 +52,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txt1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="782" max="32767" attributes="0"/>
+                      <EmptySpace pref="628" max="32767" attributes="0"/>
+                      <Component id="btnAdminCerrarSesion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -60,8 +62,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txt1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="443" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnAdminCerrarSesion" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="437" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -69,8 +74,16 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="txt1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bienvenido"/>
+                <Property name="text" type="java.lang.String" value="Bienvenido Admin"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAdminCerrarSesion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminCerrarSesionActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -89,7 +102,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txt2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="782" max="32767" attributes="0"/>
+                      <EmptySpace pref="517" max="32767" attributes="0"/>
+                      <Component id="btnEstudianteCerrarSesion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -97,8 +112,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txt2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="443" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnEstudianteCerrarSesion" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="437" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -106,8 +124,16 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="txt2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bienvenido"/>
+                <Property name="text" type="java.lang.String" value="Bienvenido juan lopez perez andamio"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnEstudianteCerrarSesion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstudianteCerrarSesionActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -126,7 +152,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txt3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="782" max="32767" attributes="0"/>
+                      <EmptySpace pref="475" max="32767" attributes="0"/>
+                      <Component id="btnProfesorCerrarSesion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -134,8 +162,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txt3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="443" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnProfesorCerrarSesion" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="437" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -143,8 +174,16 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="txt3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bienvenido"/>
+                <Property name="text" type="java.lang.String" value="Bienvenido miguel gabriel martinez gonzales"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnProfesorCerrarSesion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProfesorCerrarSesionActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

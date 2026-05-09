@@ -21,6 +21,7 @@ public class vistaPrograma extends javax.swing.JFrame {
     public vistaPrograma() {
         initComponents();
     }
+    
     public vistaPrograma(estudiante e) {
         initComponents();
         txt2.setText("Bienvenido " + e.getNombre());
@@ -43,14 +44,20 @@ public class vistaPrograma extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         bgAdmin = new javax.swing.JPanel();
         txt1 = new javax.swing.JLabel();
+        btnAdminCerrarSesion = new javax.swing.JButton();
         bgEstudiante = new javax.swing.JPanel();
         txt2 = new javax.swing.JLabel();
+        btnEstudianteCerrarSesion = new javax.swing.JButton();
         bgProfesor = new javax.swing.JPanel();
         txt3 = new javax.swing.JLabel();
+        btnProfesorCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txt1.setText("Bienvenido");
+        txt1.setText("Bienvenido Admin");
+
+        btnAdminCerrarSesion.setText("Cerrar sesión");
+        btnAdminCerrarSesion.addActionListener(this::btnAdminCerrarSesionActionPerformed);
 
         javax.swing.GroupLayout bgAdminLayout = new javax.swing.GroupLayout(bgAdmin);
         bgAdmin.setLayout(bgAdminLayout);
@@ -59,19 +66,26 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt1)
-                .addContainerGap(782, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 628, Short.MAX_VALUE)
+                .addComponent(btnAdminCerrarSesion)
+                .addContainerGap())
         );
         bgAdminLayout.setVerticalGroup(
             bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt1)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addGroup(bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdminCerrarSesion)
+                    .addComponent(txt1))
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Admin", bgAdmin);
 
-        txt2.setText("Bienvenido");
+        txt2.setText("Bienvenido juan lopez perez andamio");
+
+        btnEstudianteCerrarSesion.setText("Cerrar sesión");
+        btnEstudianteCerrarSesion.addActionListener(this::btnEstudianteCerrarSesionActionPerformed);
 
         javax.swing.GroupLayout bgEstudianteLayout = new javax.swing.GroupLayout(bgEstudiante);
         bgEstudiante.setLayout(bgEstudianteLayout);
@@ -80,19 +94,26 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgEstudianteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt2)
-                .addContainerGap(782, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 517, Short.MAX_VALUE)
+                .addComponent(btnEstudianteCerrarSesion)
+                .addContainerGap())
         );
         bgEstudianteLayout.setVerticalGroup(
             bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgEstudianteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt2)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addGroup(bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEstudianteCerrarSesion)
+                    .addComponent(txt2))
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Estudiante", bgEstudiante);
 
-        txt3.setText("Bienvenido");
+        txt3.setText("Bienvenido miguel gabriel martinez gonzales");
+
+        btnProfesorCerrarSesion.setText("Cerrar sesión");
+        btnProfesorCerrarSesion.addActionListener(this::btnProfesorCerrarSesionActionPerformed);
 
         javax.swing.GroupLayout bgProfesorLayout = new javax.swing.GroupLayout(bgProfesor);
         bgProfesor.setLayout(bgProfesorLayout);
@@ -101,14 +122,18 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgProfesorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt3)
-                .addContainerGap(782, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
+                .addComponent(btnProfesorCerrarSesion)
+                .addContainerGap())
         );
         bgProfesorLayout.setVerticalGroup(
             bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgProfesorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt3)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addGroup(bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProfesorCerrarSesion)
+                    .addComponent(txt3))
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesor", bgProfesor);
@@ -126,6 +151,27 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdminCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        vistaLogin ventana = new vistaLogin();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAdminCerrarSesionActionPerformed
+
+    private void btnEstudianteCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        vistaLogin ventana = new vistaLogin();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEstudianteCerrarSesionActionPerformed
+
+    private void btnProfesorCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfesorCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        vistaLogin ventana = new vistaLogin();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnProfesorCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +202,9 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JPanel bgAdmin;
     private javax.swing.JPanel bgEstudiante;
     private javax.swing.JPanel bgProfesor;
+    private javax.swing.JButton btnAdminCerrarSesion;
+    private javax.swing.JButton btnEstudianteCerrarSesion;
+    private javax.swing.JButton btnProfesorCerrarSesion;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt2;
