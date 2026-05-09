@@ -157,7 +157,7 @@ public class vistaLogin extends javax.swing.JFrame {
                 System.out.println("carrera: " + e.getCarrera());
 
                 if (e.isActivo()) {
-                    vistaPrograma ventana = new vistaPrograma();
+                    vistaPrograma ventana = new vistaPrograma(e);
                     ventana.setVisible(true);
                     this.setVisible(false);
                 } else if (!(e.isActivo())) {
@@ -176,7 +176,7 @@ public class vistaLogin extends javax.swing.JFrame {
                 System.out.println("horaFIn: " + p.getHoraFin());
 
                 if (p.isActivo()) {
-                    vistaPrograma ventana = new vistaPrograma();
+                    vistaPrograma ventana = new vistaPrograma(p);
                     ventana.setVisible(true);
                     this.setVisible(false);
                 } else if (!(p.isActivo())) {
@@ -193,6 +193,7 @@ public class vistaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos.");
         }
 
+        
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 

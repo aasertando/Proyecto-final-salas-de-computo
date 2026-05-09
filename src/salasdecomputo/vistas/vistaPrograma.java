@@ -4,6 +4,9 @@
  */
 package salasdecomputo.vistas;
 
+import salasdecomputo.clases.estudiante;
+import salasdecomputo.clases.profesor;
+
 /**
  *
  * @author aser
@@ -18,6 +21,15 @@ public class vistaPrograma extends javax.swing.JFrame {
     public vistaPrograma() {
         initComponents();
     }
+    public vistaPrograma(estudiante e) {
+        initComponents();
+        txt2.setText("Bienvenido " + e.getNombre());
+    }
+    
+    public vistaPrograma(profesor p) {
+        initComponents();
+        txt3.setText("Bienvenido " + p.getNombre());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,17 +40,88 @@ public class vistaPrograma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        bgAdmin = new javax.swing.JPanel();
+        txt1 = new javax.swing.JLabel();
+        bgEstudiante = new javax.swing.JPanel();
+        txt2 = new javax.swing.JLabel();
+        bgProfesor = new javax.swing.JPanel();
+        txt3 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txt1.setText("Bienvenido");
+
+        javax.swing.GroupLayout bgAdminLayout = new javax.swing.GroupLayout(bgAdmin);
+        bgAdmin.setLayout(bgAdminLayout);
+        bgAdminLayout.setHorizontalGroup(
+            bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt1)
+                .addContainerGap(782, Short.MAX_VALUE))
+        );
+        bgAdminLayout.setVerticalGroup(
+            bgAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt1)
+                .addContainerGap(443, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Admin", bgAdmin);
+
+        txt2.setText("Bienvenido");
+
+        javax.swing.GroupLayout bgEstudianteLayout = new javax.swing.GroupLayout(bgEstudiante);
+        bgEstudiante.setLayout(bgEstudianteLayout);
+        bgEstudianteLayout.setHorizontalGroup(
+            bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgEstudianteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt2)
+                .addContainerGap(782, Short.MAX_VALUE))
+        );
+        bgEstudianteLayout.setVerticalGroup(
+            bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgEstudianteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt2)
+                .addContainerGap(443, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Estudiante", bgEstudiante);
+
+        txt3.setText("Bienvenido");
+
+        javax.swing.GroupLayout bgProfesorLayout = new javax.swing.GroupLayout(bgProfesor);
+        bgProfesor.setLayout(bgProfesorLayout);
+        bgProfesorLayout.setHorizontalGroup(
+            bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgProfesorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt3)
+                .addContainerGap(782, Short.MAX_VALUE))
+        );
+        bgProfesorLayout.setVerticalGroup(
+            bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgProfesorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt3)
+                .addContainerGap(443, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Profesor", bgProfesor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -70,5 +153,12 @@ public class vistaPrograma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bgAdmin;
+    private javax.swing.JPanel bgEstudiante;
+    private javax.swing.JPanel bgProfesor;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel txt1;
+    private javax.swing.JLabel txt2;
+    private javax.swing.JLabel txt3;
     // End of variables declaration//GEN-END:variables
 }
