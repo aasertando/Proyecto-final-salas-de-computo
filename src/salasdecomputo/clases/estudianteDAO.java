@@ -13,7 +13,7 @@ import java.sql.*;
 public class estudianteDAO {
     
     //si regresa null los credenciales ingresados son invalidos
-    public static estudiante  buscarEstudiante(String usr, String pass){
+public static estudiante buscarEstudiante(String usr, String pass){
         
 
         Connection con = coneccionDB.conectarDB();
@@ -48,4 +48,26 @@ public class estudianteDAO {
         //si no se encontró
         return null;
     }
+
+public static boolean ingresarEstudiante(int id, String nombre, String contraseña, boolean activo, String carrera){
+    
+    Connection con = coneccionDB.conectarDB();
+    
+    try{
+        
+        PreparedStatement ps = con.prepareStatement("INSERT INTO estudiantes (nombre, contraseña, activo, carrera) VALUES (?, ?, ?, ?)");
+        ps.setString(1, nombre);
+        ps.setString(2, contraseña);
+        ps.setBoolean(3, activo);
+        ps.setString(4, carrera);
+        
+        ps.executeUpdate();      
+        
+    }catch(Exception e){
+        System.out.println(e);
+        System.out.println("ERROR");
+    }
+    return true;
+}
+
 }
