@@ -427,9 +427,9 @@ public class vistaPrograma extends javax.swing.JFrame {
         String pass = inputAdminContraseña.getText();
         String carrera = String.valueOf(comboAdminCarrera.getSelectedItem());
 
-        if (!(inputAdminNombre.getText().isEmpty() && !(inputAdminContraseña.getText().isEmpty()))) {
+        if (!(inputAdminNombre.getText().isEmpty() || !(inputAdminContraseña.getText().isEmpty()))) {
             if (!(usr.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
-                JOptionPane.showMessageDialog(rootPane, "En nombre debe colocar letras");
+                JOptionPane.showMessageDialog(rootPane, "En nombre solo puede colocar letras");
             }else if (pass.length() < 5) {
                 JOptionPane.showMessageDialog(rootPane, "La contraseña debe tener 5 o más caracteres");
             } else {
