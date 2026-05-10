@@ -4,7 +4,9 @@
  */
 package salasdecomputo.vistas;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
 import salasdecomputo.clases.profesor;
@@ -25,6 +27,30 @@ public class vistaPrograma extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTabbedPane1.setEnabledAt(1, false); // deshabilita la pestaña en índice 1
         jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setSelectedIndex(0); // abre la pestaña en índice 0
+        
+        ArrayList <estudiante> lista = new ArrayList<>();
+        lista = estudianteDAO.obtenerEstudiantes();
+        
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        modelo.setRowCount(0);
+        
+        System.out.println("cantidad estudiantes: " + lista.size());
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        System.out.println("columnas: " + modelo.getColumnCount());
+        
+        
+        for (estudiante e : lista){
+            modelo.addRow(new Object [] {
+                e.getId(),
+                e.getNombre(),
+                e.getContraseña(),
+                e.isActivo(),
+                e.getCarrera(),
+            });
+        }
+        
     }
 
     public vistaPrograma(estudiante e) {
@@ -33,6 +59,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setSelectedIndex(1);
     }
 
     public vistaPrograma(profesor p) {
@@ -41,6 +68,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setSelectedIndex(2);
     }
 
     /**
@@ -66,7 +94,10 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt10 = new javax.swing.JLabel();
         btnAdminCrearEstudiante = new javax.swing.JButton();
         comboAdminCarrera = new javax.swing.JComboBox<>();
-        bgEliminarEstudiante = new javax.swing.JPanel();
+        bgAdministrarEstudiantes = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        txt4 = new javax.swing.JLabel();
         bgAñadirProfesor = new javax.swing.JPanel();
         bgEliminarProfesor = new javax.swing.JPanel();
         bgActivarUsuario = new javax.swing.JPanel();
@@ -141,7 +172,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     .addComponent(comboAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAdminCrearEstudiante)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bgAñadirEstudianteLayout = new javax.swing.GroupLayout(bgAñadirEstudiante);
@@ -163,18 +194,60 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Añadir estudiante", bgAñadirEstudiante);
 
-        javax.swing.GroupLayout bgEliminarEstudianteLayout = new javax.swing.GroupLayout(bgEliminarEstudiante);
-        bgEliminarEstudiante.setLayout(bgEliminarEstudianteLayout);
-        bgEliminarEstudianteLayout.setHorizontalGroup(
-            bgEliminarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nombre", "Contraseña", "Activo", "Carrera"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(160);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(90);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(90);
+        }
+
+        txt4.setText("Selecccione un estudiante para eliminarlo o actualizar sus datos");
+
+        javax.swing.GroupLayout bgAdministrarEstudiantesLayout = new javax.swing.GroupLayout(bgAdministrarEstudiantes);
+        bgAdministrarEstudiantes.setLayout(bgAdministrarEstudiantesLayout);
+        bgAdministrarEstudiantesLayout.setHorizontalGroup(
+            bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgAdministrarEstudiantesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                    .addGroup(bgAdministrarEstudiantesLayout.createSequentialGroup()
+                        .addComponent(txt4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        bgEliminarEstudianteLayout.setVerticalGroup(
-            bgEliminarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+        bgAdministrarEstudiantesLayout.setVerticalGroup(
+            bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgAdministrarEstudiantesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Eliminar estudiante", bgEliminarEstudiante);
+        jTabbedPane2.addTab("Administrar estudiantes", bgAdministrarEstudiantes);
 
         javax.swing.GroupLayout bgAñadirProfesorLayout = new javax.swing.GroupLayout(bgAñadirProfesor);
         bgAñadirProfesor.setLayout(bgAñadirProfesorLayout);
@@ -184,7 +257,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgAñadirProfesorLayout.setVerticalGroup(
             bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Añadir profesor", bgAñadirProfesor);
@@ -197,7 +270,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgEliminarProfesorLayout.setVerticalGroup(
             bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Eliminar profesor", bgEliminarProfesor);
@@ -210,7 +283,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgActivarUsuarioLayout.setVerticalGroup(
             bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Activar usuario", bgActivarUsuario);
@@ -223,7 +296,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgDesactivarUsuarioLayout.setVerticalGroup(
             bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 348, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Desactivar usuario", bgDesactivarUsuario);
@@ -279,7 +352,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEstudianteCerrarSesion)
                     .addComponent(txt2))
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Estudiante", bgEstudiante);
@@ -307,7 +380,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnProfesorCerrarSesion)
                     .addComponent(txt3))
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesor", bgProfesor);
@@ -353,14 +426,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         String usr = inputAdminNombre.getText();
         String pass = inputAdminContraseña.getText();
         String carrera = String.valueOf(comboAdminCarrera.getSelectedItem());
-        System.out.println(carrera);
-        
+
         if (!(inputAdminNombre.getText().isEmpty() && inputAdminContraseña.getText().isEmpty())) {
             if (!(usr.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
                 JOptionPane.showMessageDialog(rootPane, "En nombre debe colocar letras");
-            } else if (!(carrera.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
-                JOptionPane.showMessageDialog(rootPane, "En la carrera debe colocar letras");
-            } else if (pass.length() < 5) {
+            }else if (pass.length() < 5) {
                 JOptionPane.showMessageDialog(rootPane, "La contraseña debe tener 5 o más caracteres");
             } else {
 
@@ -412,10 +482,10 @@ public class vistaPrograma extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgActivarUsuario;
     private javax.swing.JPanel bgAdmin;
+    private javax.swing.JPanel bgAdministrarEstudiantes;
     private javax.swing.JPanel bgAñadirEstudiante;
     private javax.swing.JPanel bgAñadirProfesor;
     private javax.swing.JPanel bgDesactivarUsuario;
-    private javax.swing.JPanel bgEliminarEstudiante;
     private javax.swing.JPanel bgEliminarProfesor;
     private javax.swing.JPanel bgEstudiante;
     private javax.swing.JPanel bgProfesor;
@@ -427,12 +497,15 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JPanel contenedor1;
     private javax.swing.JTextField inputAdminContraseña;
     private javax.swing.JTextField inputAdminNombre;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt10;
     private javax.swing.JLabel txt2;
     private javax.swing.JLabel txt3;
+    private javax.swing.JLabel txt4;
     private javax.swing.JLabel txt8;
     private javax.swing.JLabel txt9;
     // End of variables declaration//GEN-END:variables
