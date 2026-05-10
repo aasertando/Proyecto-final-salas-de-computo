@@ -23,18 +23,24 @@ public class vistaPrograma extends javax.swing.JFrame {
     public vistaPrograma() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jTabbedPane1.setEnabledAt(1, false); // deshabilita la pestaña en índice 1
+        jTabbedPane1.setEnabledAt(2, false);
     }
 
     public vistaPrograma(estudiante e) {
         initComponents();
         txt2.setText("Bienvenido " + e.getNombre());
         this.setLocationRelativeTo(null);
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(2, false);
     }
 
     public vistaPrograma(profesor p) {
         initComponents();
         txt3.setText("Bienvenido " + p.getNombre());
         this.setLocationRelativeTo(null);
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, false);
     }
 
     /**
@@ -58,8 +64,8 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt9 = new javax.swing.JLabel();
         inputAdminContraseña = new javax.swing.JTextField();
         txt10 = new javax.swing.JLabel();
-        inputAdminCarrera = new javax.swing.JTextField();
         btnAdminCrearEstudiante = new javax.swing.JButton();
+        comboAdminCarrera = new javax.swing.JComboBox<>();
         bgEliminarEstudiante = new javax.swing.JPanel();
         bgAñadirProfesor = new javax.swing.JPanel();
         bgEliminarProfesor = new javax.swing.JPanel();
@@ -93,6 +99,8 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminCrearEstudiante.setText("Crear estudiante");
         btnAdminCrearEstudiante.addActionListener(this::btnAdminCrearEstudianteActionPerformed);
 
+        comboAdminCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ingenieria_sitemas", "psicologia", "filosofia", "sociales", "ingles", "estadistica" }));
+
         javax.swing.GroupLayout contenedor1Layout = new javax.swing.GroupLayout(contenedor1);
         contenedor1.setLayout(contenedor1Layout);
         contenedor1Layout.setHorizontalGroup(
@@ -112,7 +120,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                         .addGroup(contenedor1Layout.createSequentialGroup()
                             .addComponent(txt10)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(inputAdminCarrera)))
+                            .addComponent(comboAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnAdminCrearEstudiante))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
@@ -130,7 +138,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt10)
-                    .addComponent(inputAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAdminCrearEstudiante)
                 .addContainerGap(208, Short.MAX_VALUE))
@@ -344,14 +352,14 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         String usr = inputAdminNombre.getText();
         String pass = inputAdminContraseña.getText();
-        String carrera = inputAdminCarrera.getText();
-
-        if (!(inputAdminNombre.getText().isEmpty() && inputAdminContraseña.getText().isEmpty() && inputAdminCarrera.getText().isEmpty())) {
-
+        String carrera = String.valueOf(comboAdminCarrera.getSelectedItem());
+        System.out.println(carrera);
+        
+        if (!(inputAdminNombre.getText().isEmpty() && inputAdminContraseña.getText().isEmpty())) {
             if (!(usr.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
-                JOptionPane.showMessageDialog(rootPane, "En nombre solo puede colocar letras");
+                JOptionPane.showMessageDialog(rootPane, "En nombre debe colocar letras");
             } else if (!(carrera.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
-                JOptionPane.showMessageDialog(rootPane, "En la carrera solo puede colocar letras");
+                JOptionPane.showMessageDialog(rootPane, "En la carrera debe colocar letras");
             } else if (pass.length() < 5) {
                 JOptionPane.showMessageDialog(rootPane, "La contraseña debe tener 5 o más caracteres");
             } else {
@@ -366,7 +374,6 @@ public class vistaPrograma extends javax.swing.JFrame {
 
                 inputAdminNombre.setText("");
                 inputAdminContraseña.setText("");
-                inputAdminCarrera.setText("");
 
             }
 
@@ -416,8 +423,8 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminCrearEstudiante;
     private javax.swing.JButton btnEstudianteCerrarSesion;
     private javax.swing.JButton btnProfesorCerrarSesion;
+    private javax.swing.JComboBox<String> comboAdminCarrera;
     private javax.swing.JPanel contenedor1;
-    private javax.swing.JTextField inputAdminCarrera;
     private javax.swing.JTextField inputAdminContraseña;
     private javax.swing.JTextField inputAdminNombre;
     private javax.swing.JTabbedPane jTabbedPane1;
