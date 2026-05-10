@@ -4,7 +4,9 @@
  */
 package salasdecomputo.vistas;
 
+import javax.swing.JOptionPane;
 import salasdecomputo.clases.estudiante;
+import salasdecomputo.clases.estudianteDAO;
 import salasdecomputo.clases.profesor;
 
 /**
@@ -12,7 +14,7 @@ import salasdecomputo.clases.profesor;
  * @author aser
  */
 public class vistaPrograma extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(vistaPrograma.class.getName());
 
     /**
@@ -22,13 +24,13 @@ public class vistaPrograma extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     public vistaPrograma(estudiante e) {
         initComponents();
         txt2.setText("Bienvenido " + e.getNombre());
         this.setLocationRelativeTo(null);
     }
-    
+
     public vistaPrograma(profesor p) {
         initComponents();
         txt3.setText("Bienvenido " + p.getNombre());
@@ -50,6 +52,14 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminCerrarSesion = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         bgAñadirEstudiante = new javax.swing.JPanel();
+        contenedor1 = new javax.swing.JPanel();
+        txt8 = new javax.swing.JLabel();
+        inputAdminNombre = new javax.swing.JTextField();
+        txt9 = new javax.swing.JLabel();
+        inputAdminContraseña = new javax.swing.JTextField();
+        txt10 = new javax.swing.JLabel();
+        inputAdminCarrera = new javax.swing.JTextField();
+        btnAdminCrearEstudiante = new javax.swing.JButton();
         bgEliminarEstudiante = new javax.swing.JPanel();
         bgAñadirProfesor = new javax.swing.JPanel();
         bgEliminarProfesor = new javax.swing.JPanel();
@@ -69,15 +79,78 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminCerrarSesion.setText("Cerrar sesión");
         btnAdminCerrarSesion.addActionListener(this::btnAdminCerrarSesionActionPerformed);
 
+        contenedor1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txt8.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txt8.setText("Nombre estudiante:");
+
+        txt9.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txt9.setText("Contraseña estudiante:");
+
+        txt10.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txt10.setText("Carrera estudiante:");
+
+        btnAdminCrearEstudiante.setText("Crear estudiante");
+        btnAdminCrearEstudiante.addActionListener(this::btnAdminCrearEstudianteActionPerformed);
+
+        javax.swing.GroupLayout contenedor1Layout = new javax.swing.GroupLayout(contenedor1);
+        contenedor1.setLayout(contenedor1Layout);
+        contenedor1Layout.setHorizontalGroup(
+            contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenedor1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(contenedor1Layout.createSequentialGroup()
+                            .addComponent(txt8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(inputAdminNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contenedor1Layout.createSequentialGroup()
+                            .addComponent(txt9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(inputAdminContraseña))
+                        .addGroup(contenedor1Layout.createSequentialGroup()
+                            .addComponent(txt10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(inputAdminCarrera)))
+                    .addComponent(btnAdminCrearEstudiante))
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+        contenedor1Layout.setVerticalGroup(
+            contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contenedor1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt8)
+                    .addComponent(inputAdminNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt9)
+                    .addComponent(inputAdminContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contenedor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt10)
+                    .addComponent(inputAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdminCrearEstudiante)
+                .addContainerGap(208, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout bgAñadirEstudianteLayout = new javax.swing.GroupLayout(bgAñadirEstudiante);
         bgAñadirEstudiante.setLayout(bgAñadirEstudianteLayout);
         bgAñadirEstudianteLayout.setHorizontalGroup(
             bgAñadirEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGroup(bgAñadirEstudianteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(contenedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bgAñadirEstudianteLayout.setVerticalGroup(
             bgAñadirEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGroup(bgAñadirEstudianteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(contenedor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Añadir estudiante", bgAñadirEstudiante);
@@ -86,11 +159,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgEliminarEstudiante.setLayout(bgEliminarEstudianteLayout);
         bgEliminarEstudianteLayout.setHorizontalGroup(
             bgEliminarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         bgEliminarEstudianteLayout.setVerticalGroup(
             bgEliminarEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Eliminar estudiante", bgEliminarEstudiante);
@@ -99,11 +172,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgAñadirProfesor.setLayout(bgAñadirProfesorLayout);
         bgAñadirProfesorLayout.setHorizontalGroup(
             bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         bgAñadirProfesorLayout.setVerticalGroup(
             bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Añadir profesor", bgAñadirProfesor);
@@ -112,11 +185,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgEliminarProfesor.setLayout(bgEliminarProfesorLayout);
         bgEliminarProfesorLayout.setHorizontalGroup(
             bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         bgEliminarProfesorLayout.setVerticalGroup(
             bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Eliminar profesor", bgEliminarProfesor);
@@ -125,11 +198,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgActivarUsuario.setLayout(bgActivarUsuarioLayout);
         bgActivarUsuarioLayout.setHorizontalGroup(
             bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         bgActivarUsuarioLayout.setVerticalGroup(
             bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Activar usuario", bgActivarUsuario);
@@ -138,11 +211,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgDesactivarUsuario.setLayout(bgDesactivarUsuarioLayout);
         bgDesactivarUsuarioLayout.setHorizontalGroup(
             bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         bgDesactivarUsuarioLayout.setVerticalGroup(
             bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
+            .addGap(0, 348, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Desactivar usuario", bgDesactivarUsuario);
@@ -187,7 +260,7 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgEstudianteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
                 .addComponent(btnEstudianteCerrarSesion)
                 .addContainerGap())
         );
@@ -215,7 +288,7 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgProfesorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
                 .addComponent(btnProfesorCerrarSesion)
                 .addContainerGap())
         );
@@ -266,6 +339,44 @@ public class vistaPrograma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnProfesorCerrarSesionActionPerformed
 
+    private void btnAdminCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCrearEstudianteActionPerformed
+        // TODO add your handling code here:
+
+        String usr = inputAdminNombre.getText();
+        String pass = inputAdminContraseña.getText();
+        String carrera = inputAdminCarrera.getText();
+
+        if (!(inputAdminNombre.getText().isEmpty() && inputAdminContraseña.getText().isEmpty() && inputAdminCarrera.getText().isEmpty())) {
+
+            if (!(usr.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
+                JOptionPane.showMessageDialog(rootPane, "En nombre solo puede colocar letras");
+            } else if (!(carrera.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
+                JOptionPane.showMessageDialog(rootPane, "En la carrera solo puede colocar letras");
+            } else if (pass.length() < 5) {
+                JOptionPane.showMessageDialog(rootPane, "La contraseña debe tener 5 o más caracteres");
+            } else {
+
+                boolean consulta = estudianteDAO.ingresarEstudiante(usr, pass, carrera);
+
+                if (consulta) {
+                    JOptionPane.showMessageDialog(rootPane, "Estudiante ingresado satisfactoriamente");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el estudiante");
+                }
+
+                inputAdminNombre.setText("");
+                inputAdminContraseña.setText("");
+                inputAdminCarrera.setText("");
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos");
+        }
+
+
+    }//GEN-LAST:event_btnAdminCrearEstudianteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -302,12 +413,20 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JPanel bgEstudiante;
     private javax.swing.JPanel bgProfesor;
     private javax.swing.JButton btnAdminCerrarSesion;
+    private javax.swing.JButton btnAdminCrearEstudiante;
     private javax.swing.JButton btnEstudianteCerrarSesion;
     private javax.swing.JButton btnProfesorCerrarSesion;
+    private javax.swing.JPanel contenedor1;
+    private javax.swing.JTextField inputAdminCarrera;
+    private javax.swing.JTextField inputAdminContraseña;
+    private javax.swing.JTextField inputAdminNombre;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel txt1;
+    private javax.swing.JLabel txt10;
     private javax.swing.JLabel txt2;
     private javax.swing.JLabel txt3;
+    private javax.swing.JLabel txt8;
+    private javax.swing.JLabel txt9;
     // End of variables declaration//GEN-END:variables
 }

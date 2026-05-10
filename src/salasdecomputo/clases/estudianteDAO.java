@@ -49,25 +49,29 @@ public static estudiante buscarEstudiante(String usr, String pass){
         return null;
     }
 
-public static boolean ingresarEstudiante(int id, String nombre, String contraseña, boolean activo, String carrera){
+public static boolean ingresarEstudiante(String nombre, String contraseña, String carrera){
     
     Connection con = coneccionDB.conectarDB();
     
     try{
         
-        PreparedStatement ps = con.prepareStatement("INSERT INTO estudiantes (nombre, contraseña, activo, carrera) VALUES (?, ?, ?, ?)");
+        PreparedStatement ps = con.prepareStatement("INSERT INTO estudiantes (nombre, contraseña, activo, carrera) VALUES (?, ?, true, ?)");
         ps.setString(1, nombre);
         ps.setString(2, contraseña);
-        ps.setBoolean(3, activo);
-        ps.setString(4, carrera);
+        ps.setString(3, carrera);
         
-        ps.executeUpdate();      
+        ps.executeUpdate();
         
-    }catch(Exception e){
+        return true;
+        
+    }catch(SQLException e){
         System.out.println(e);
         System.out.println("ERROR");
+        System.out.println(e.getErrorCode());
+        return false;
     }
-    return true;
+    
+    
 }
 
 }
