@@ -214,7 +214,8 @@ public class vistaPrograma extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -229,6 +230,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt4.setText("Selecccione un estudiante para eliminarlo o actualizar sus datos");
 
         btnEliminarEstudiante.setText("Eliminar estudiante");
+        btnEliminarEstudiante.addActionListener(this::btnEliminarEstudianteActionPerformed);
 
         btnEliminarEstudiante1.setText("Editar estudiante");
 
@@ -340,7 +342,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     .addComponent(btnAdminCerrarSesion)
                     .addComponent(txt1))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
 
@@ -410,7 +412,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -470,6 +472,23 @@ public class vistaPrograma extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnAdminCrearEstudianteActionPerformed
+
+    private void btnEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEstudianteActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable1.getSelectedRow();
+
+        int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
+        String nombre = jTable1.getValueAt(row, 1).toString();
+        String contraseña = jTable1.getValueAt(row, 2).toString();
+        boolean activo = Boolean.parseBoolean(jTable1.getValueAt(row, 3).toString());
+        String carrera = jTable1.getValueAt(row, 4).toString();
+        
+        System.out.println("" + id + nombre + contraseña + activo + carrera);
+        
+        estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
+        
+    }//GEN-LAST:event_btnEliminarEstudianteActionPerformed
 
     /**
      * @param args the command line arguments
