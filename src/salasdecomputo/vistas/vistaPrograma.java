@@ -35,10 +35,10 @@ public class vistaPrograma extends javax.swing.JFrame {
 //        DefaultTableModel modelo = new DefaultTableModel();
 //        modelo.setRowCount(0);
         
-        System.out.println("cantidad estudiantes: " + lista.size());
+//        System.out.println("cantidad estudiantes: " + lista.size());
         
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        System.out.println("columnas: " + modelo.getColumnCount());
+//        System.out.println("columnas: " + modelo.getColumnCount());
         
         
         for (estudiante e : lista){
@@ -98,6 +98,8 @@ public class vistaPrograma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         txt4 = new javax.swing.JLabel();
+        btnEliminarEstudiante = new javax.swing.JButton();
+        btnEliminarEstudiante1 = new javax.swing.JButton();
         bgAñadirProfesor = new javax.swing.JPanel();
         bgEliminarProfesor = new javax.swing.JPanel();
         bgActivarUsuario = new javax.swing.JPanel();
@@ -115,6 +117,8 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         btnAdminCerrarSesion.setText("Cerrar sesión");
         btnAdminCerrarSesion.addActionListener(this::btnAdminCerrarSesionActionPerformed);
+
+        jTabbedPane2.setName("Programa"); // NOI18N
 
         contenedor1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -172,7 +176,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     .addComponent(comboAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAdminCrearEstudiante)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bgAñadirEstudianteLayout = new javax.swing.GroupLayout(bgAñadirEstudiante);
@@ -224,6 +228,10 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         txt4.setText("Selecccione un estudiante para eliminarlo o actualizar sus datos");
 
+        btnEliminarEstudiante.setText("Eliminar estudiante");
+
+        btnEliminarEstudiante1.setText("Editar estudiante");
+
         javax.swing.GroupLayout bgAdministrarEstudiantesLayout = new javax.swing.GroupLayout(bgAdministrarEstudiantes);
         bgAdministrarEstudiantes.setLayout(bgAdministrarEstudiantesLayout);
         bgAdministrarEstudiantesLayout.setHorizontalGroup(
@@ -233,8 +241,13 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                     .addGroup(bgAdministrarEstudiantesLayout.createSequentialGroup()
-                        .addComponent(txt4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt4)
+                            .addGroup(bgAdministrarEstudiantesLayout.createSequentialGroup()
+                                .addComponent(btnEliminarEstudiante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnEliminarEstudiante1)))
+                        .addGap(0, 190, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         bgAdministrarEstudiantesLayout.setVerticalGroup(
@@ -244,7 +257,11 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addComponent(txt4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarEstudiante)
+                    .addComponent(btnEliminarEstudiante1))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Administrar estudiantes", bgAdministrarEstudiantes);
@@ -257,7 +274,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgAñadirProfesorLayout.setVerticalGroup(
             bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Añadir profesor", bgAñadirProfesor);
@@ -270,7 +287,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgEliminarProfesorLayout.setVerticalGroup(
             bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Eliminar profesor", bgEliminarProfesor);
@@ -283,7 +300,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgActivarUsuarioLayout.setVerticalGroup(
             bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Activar usuario", bgActivarUsuario);
@@ -296,7 +313,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         bgDesactivarUsuarioLayout.setVerticalGroup(
             bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Desactivar usuario", bgDesactivarUsuario);
@@ -323,7 +340,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     .addComponent(btnAdminCerrarSesion)
                     .addComponent(txt1))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane2)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -352,7 +369,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEstudianteCerrarSesion)
                     .addComponent(txt2))
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Estudiante", bgEstudiante);
@@ -380,7 +397,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnProfesorCerrarSesion)
                     .addComponent(txt3))
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesor", bgProfesor);
@@ -393,7 +410,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         pack();
@@ -491,6 +508,8 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JPanel bgProfesor;
     private javax.swing.JButton btnAdminCerrarSesion;
     private javax.swing.JButton btnAdminCrearEstudiante;
+    private javax.swing.JButton btnEliminarEstudiante;
+    private javax.swing.JButton btnEliminarEstudiante1;
     private javax.swing.JButton btnEstudianteCerrarSesion;
     private javax.swing.JButton btnProfesorCerrarSesion;
     private javax.swing.JComboBox<String> comboAdminCarrera;
