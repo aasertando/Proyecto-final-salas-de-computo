@@ -34,11 +34,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         ArrayList<estudiante> lista = new ArrayList<>();
         lista = estudianteDAO.obtenerEstudiantes();
 
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        modelo.setRowCount(0);
-//        System.out.println("cantidad estudiantes: " + lista.size());
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-//        System.out.println("columnas: " + modelo.getColumnCount());
 
         for (estudiante e : lista) {
             modelo.addRow(new Object[]{
@@ -47,6 +43,22 @@ public class vistaPrograma extends javax.swing.JFrame {
                 e.getContraseña(),
                 e.isActivo(),
                 e.getCarrera(),});
+        }
+        
+        ArrayList<profesor> listaP = new ArrayList<>();
+        listaP = profesorDAO.obtenerProfesores();
+
+        DefaultTableModel modelop = (DefaultTableModel) jTable2.getModel();
+
+        for (profesor p : listaP) {
+            modelop.addRow(new Object[]{
+                p.getId(),
+                p.getNombre(),
+                p.getContraseña(),
+                p.isActivo(),
+                p.getDepartamento(),
+                p.getHoraInicio(),
+                p.getHoraFin(),});
         }
 
     }
@@ -392,13 +404,10 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Nombre", "Contraseña", "Activo", "Departamento", "Hora inicio", "Hora Fin"
+                "ID", "Nombre", "Contraseña", "Activo", "Departamento", "H. inicio", "H. Fin"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
