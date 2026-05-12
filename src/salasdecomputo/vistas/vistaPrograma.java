@@ -97,7 +97,18 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnEliminarEstudiante = new javax.swing.JButton();
         btnEliminarEstudiante1 = new javax.swing.JButton();
         bgAñadirProfesor = new javax.swing.JPanel();
-        bgEliminarProfesor = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        comboAdminDepaProfe = new javax.swing.JComboBox<>();
+        inputAdminNombreProfe = new javax.swing.JTextField();
+        inputAdminContraseñaProfe = new javax.swing.JTextField();
+        btnAdminCrearProfe = new javax.swing.JButton();
+        txt11 = new javax.swing.JLabel();
+        txt13 = new javax.swing.JLabel();
+        txt12 = new javax.swing.JLabel();
+        bgAdministrarProfesores = new javax.swing.JPanel();
+        btnEliminarEstudiante2 = new javax.swing.JButton();
+        txt5 = new javax.swing.JLabel();
+        btnEliminarEstudiante3 = new javax.swing.JButton();
         bgActivarUsuario = new javax.swing.JPanel();
         bgDesactivarUsuario = new javax.swing.JPanel();
         bgEstudiante = new javax.swing.JPanel();
@@ -172,7 +183,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     .addComponent(comboAdminCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAdminCrearEstudiante)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bgAñadirEstudianteLayout = new javax.swing.GroupLayout(bgAñadirEstudiante);
@@ -259,46 +270,129 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgAdministrarEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarEstudiante)
                     .addComponent(btnEliminarEstudiante1))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Administrar estudiantes", bgAdministrarEstudiantes);
+
+        comboAdminDepaProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ingenieria_sitemas", "psicologia", "filosofia", "sociales", "ingles", "estadistica" }));
+
+        btnAdminCrearProfe.setText("Crear profesor");
+        btnAdminCrearProfe.addActionListener(this::btnAdminCrearProfeActionPerformed);
+
+        txt11.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txt11.setText("Nombre profesor:");
+
+        txt13.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txt13.setText("Departamento profesor:");
+
+        txt12.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txt12.setText("Contraseña profesor:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputAdminNombreProfe, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(inputAdminContraseñaProfe, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboAdminDepaProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdminCrearProfe))
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt11)
+                    .addComponent(inputAdminNombreProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt12)
+                    .addComponent(inputAdminContraseñaProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt13)
+                    .addComponent(comboAdminDepaProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdminCrearProfe)
+                .addGap(0, 271, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout bgAñadirProfesorLayout = new javax.swing.GroupLayout(bgAñadirProfesor);
         bgAñadirProfesor.setLayout(bgAñadirProfesorLayout);
         bgAñadirProfesorLayout.setHorizontalGroup(
             bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGroup(bgAñadirProfesorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bgAñadirProfesorLayout.setVerticalGroup(
             bgAñadirProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(bgAñadirProfesorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Añadir profesor", bgAñadirProfesor);
 
-        javax.swing.GroupLayout bgEliminarProfesorLayout = new javax.swing.GroupLayout(bgEliminarProfesor);
-        bgEliminarProfesor.setLayout(bgEliminarProfesorLayout);
-        bgEliminarProfesorLayout.setHorizontalGroup(
-            bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+        btnEliminarEstudiante2.setText("Eliminar estudiante");
+        btnEliminarEstudiante2.addActionListener(this::btnEliminarEstudiante2ActionPerformed);
+
+        txt5.setText("Selecccione un estudiante para eliminarlo o actualizar sus datos");
+
+        btnEliminarEstudiante3.setText("Editar estudiante");
+
+        javax.swing.GroupLayout bgAdministrarProfesoresLayout = new javax.swing.GroupLayout(bgAdministrarProfesores);
+        bgAdministrarProfesores.setLayout(bgAdministrarProfesoresLayout);
+        bgAdministrarProfesoresLayout.setHorizontalGroup(
+            bgAdministrarProfesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgAdministrarProfesoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bgAdministrarProfesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgAdministrarProfesoresLayout.createSequentialGroup()
+                        .addComponent(btnEliminarEstudiante2)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnEliminarEstudiante3))
+                    .addComponent(txt5))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
-        bgEliminarProfesorLayout.setVerticalGroup(
-            bgEliminarProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+        bgAdministrarProfesoresLayout.setVerticalGroup(
+            bgAdministrarProfesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgAdministrarProfesoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                .addGroup(bgAdministrarProfesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarEstudiante3)
+                    .addComponent(btnEliminarEstudiante2))
+                .addGap(32, 32, 32))
         );
 
-        jTabbedPane2.addTab("Eliminar profesor", bgEliminarProfesor);
+        jTabbedPane2.addTab("Administrar Profesores", bgAdministrarProfesores);
 
         javax.swing.GroupLayout bgActivarUsuarioLayout = new javax.swing.GroupLayout(bgActivarUsuario);
         bgActivarUsuario.setLayout(bgActivarUsuarioLayout);
         bgActivarUsuarioLayout.setHorizontalGroup(
             bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         bgActivarUsuarioLayout.setVerticalGroup(
             bgActivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Activar usuario", bgActivarUsuario);
@@ -307,11 +401,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgDesactivarUsuario.setLayout(bgDesactivarUsuarioLayout);
         bgDesactivarUsuarioLayout.setHorizontalGroup(
             bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         bgDesactivarUsuarioLayout.setVerticalGroup(
             bgDesactivarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Desactivar usuario", bgDesactivarUsuario);
@@ -367,7 +461,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEstudianteCerrarSesion)
                     .addComponent(txt2))
-                .addContainerGap(522, Short.MAX_VALUE))
+                .addContainerGap(541, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Estudiante", bgEstudiante);
@@ -395,7 +489,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addGroup(bgProfesorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnProfesorCerrarSesion)
                     .addComponent(txt3))
-                .addContainerGap(522, Short.MAX_VALUE))
+                .addContainerGap(541, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profesor", bgProfesor);
@@ -525,6 +619,14 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEliminarEstudianteActionPerformed
 
+    private void btnAdminCrearProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminCrearProfeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminCrearProfeActionPerformed
+
+    private void btnEliminarEstudiante2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEstudiante2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarEstudiante2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -554,31 +656,42 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JPanel bgActivarUsuario;
     private javax.swing.JPanel bgAdmin;
     private javax.swing.JPanel bgAdministrarEstudiantes;
+    private javax.swing.JPanel bgAdministrarProfesores;
     private javax.swing.JPanel bgAñadirEstudiante;
     private javax.swing.JPanel bgAñadirProfesor;
     private javax.swing.JPanel bgDesactivarUsuario;
-    private javax.swing.JPanel bgEliminarProfesor;
     private javax.swing.JPanel bgEstudiante;
     private javax.swing.JPanel bgProfesor;
     private javax.swing.JButton btnAdminCerrarSesion;
     private javax.swing.JButton btnAdminCrearEstudiante;
+    private javax.swing.JButton btnAdminCrearProfe;
     private javax.swing.JButton btnEliminarEstudiante;
     private javax.swing.JButton btnEliminarEstudiante1;
+    private javax.swing.JButton btnEliminarEstudiante2;
+    private javax.swing.JButton btnEliminarEstudiante3;
     private javax.swing.JButton btnEstudianteCerrarSesion;
     private javax.swing.JButton btnProfesorCerrarSesion;
     private javax.swing.JComboBox<String> comboAdminCarrera;
+    private javax.swing.JComboBox<String> comboAdminDepaProfe;
     private javax.swing.JPanel contenedor1;
     private javax.swing.JTextField inputAdminContraseña;
+    private javax.swing.JTextField inputAdminContraseñaProfe;
     private javax.swing.JTextField inputAdminNombre;
+    private javax.swing.JTextField inputAdminNombreProfe;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt10;
+    private javax.swing.JLabel txt11;
+    private javax.swing.JLabel txt12;
+    private javax.swing.JLabel txt13;
     private javax.swing.JLabel txt2;
     private javax.swing.JLabel txt3;
     private javax.swing.JLabel txt4;
+    private javax.swing.JLabel txt5;
     private javax.swing.JLabel txt8;
     private javax.swing.JLabel txt9;
     // End of variables declaration//GEN-END:variables
