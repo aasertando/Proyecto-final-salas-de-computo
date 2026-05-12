@@ -28,29 +28,25 @@ public class vistaPrograma extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(1, false); // deshabilita la pestaña en índice 1
         jTabbedPane1.setEnabledAt(2, false);
         jTabbedPane1.setSelectedIndex(0); // abre la pestaña en índice 0
-        
-        ArrayList <estudiante> lista = new ArrayList<>();
+
+        ArrayList<estudiante> lista = new ArrayList<>();
         lista = estudianteDAO.obtenerEstudiantes();
-        
+
 //        DefaultTableModel modelo = new DefaultTableModel();
 //        modelo.setRowCount(0);
-        
 //        System.out.println("cantidad estudiantes: " + lista.size());
-        
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 //        System.out.println("columnas: " + modelo.getColumnCount());
-        
-        
-        for (estudiante e : lista){
-            modelo.addRow(new Object [] {
+
+        for (estudiante e : lista) {
+            modelo.addRow(new Object[]{
                 e.getId(),
                 e.getNombre(),
                 e.getContraseña(),
                 e.isActivo(),
-                e.getCarrera(),
-            });
+                e.getCarrera(),});
         }
-        
+
     }
 
     public vistaPrograma(estudiante e) {
@@ -446,10 +442,10 @@ public class vistaPrograma extends javax.swing.JFrame {
         String pass = inputAdminContraseña.getText();
         String carrera = String.valueOf(comboAdminCarrera.getSelectedItem());
 
-        if (!(inputAdminNombre.getText().isEmpty() || !(inputAdminContraseña.getText().isEmpty()))) {
+        if (!(inputAdminNombre.getText().isEmpty() && !(inputAdminContraseña.getText().isEmpty()))) {
             if (!(usr.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
                 JOptionPane.showMessageDialog(rootPane, "En nombre solo puede colocar letras");
-            }else if (pass.length() < 5) {
+            } else if (pass.length() < 5) {
                 JOptionPane.showMessageDialog(rootPane, "La contraseña debe tener 5 o más caracteres");
             } else {
 
@@ -475,19 +471,45 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     private void btnEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEstudianteActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable1.getSelectedRow();
 
         int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
-        String nombre = jTable1.getValueAt(row, 1).toString();
-        String contraseña = jTable1.getValueAt(row, 2).toString();
-        boolean activo = Boolean.parseBoolean(jTable1.getValueAt(row, 3).toString());
-        String carrera = jTable1.getValueAt(row, 4).toString();
-        
-        System.out.println("" + id + nombre + contraseña + activo + carrera);
-        
-        estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
-        
+//        String nombre = jTable1.getValueAt(row, 1).toString();
+//        String contraseña = jTable1.getValueAt(row, 2).toString();
+//        boolean activo = Boolean.parseBoolean(jTable1.getValueAt(row, 3).toString());
+//        String carrera = jTable1.getValueAt(row, 4).toString();
+//        
+//        System.out.println("" + id + nombre + contraseña + activo + carrera);
+//        
+//        estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
+
+        if (estudianteDAO.eliminarEstudiante(id)) {
+            estudianteDAO.eliminarEstudiante(id);
+            JOptionPane.showMessageDialog(rootPane, "Estudiante eliminado");
+
+            ArrayList<estudiante> lista = new ArrayList<>();
+            lista = estudianteDAO.obtenerEstudiantes();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            
+            modelo.setRowCount(0);
+
+            for (estudiante e : lista) {
+                modelo.addRow(new Object[]{
+                    e.getId(),
+                    e.getNombre(),
+                    e.getContraseña(),
+                    e.isActivo(),
+                    e.getCarrera(),});
+            }
+            
+            
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar estudiante");
+        }
+
     }//GEN-LAST:event_btnEliminarEstudianteActionPerformed
 
     /**
