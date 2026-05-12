@@ -450,6 +450,21 @@ public class vistaPrograma extends javax.swing.JFrame {
             } else {
 
                 boolean consulta = estudianteDAO.ingresarEstudiante(usr, pass, carrera);
+                ArrayList<estudiante> lista = new ArrayList<>();
+                lista = estudianteDAO.obtenerEstudiantes();
+
+                DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+                modelo.setRowCount(0);
+
+                for (estudiante e : lista) {
+                    modelo.addRow(new Object[]{
+                        e.getId(),
+                        e.getNombre(),
+                        e.getContraseña(),
+                        e.isActivo(),
+                        e.getCarrera(),});
+                }
 
                 if (consulta) {
                     JOptionPane.showMessageDialog(rootPane, "Estudiante ingresado satisfactoriamente");
@@ -492,7 +507,7 @@ public class vistaPrograma extends javax.swing.JFrame {
             lista = estudianteDAO.obtenerEstudiantes();
 
             DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-            
+
             modelo.setRowCount(0);
 
             for (estudiante e : lista) {
@@ -503,8 +518,6 @@ public class vistaPrograma extends javax.swing.JFrame {
                     e.isActivo(),
                     e.getCarrera(),});
             }
-            
-            
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar estudiante");
