@@ -16,7 +16,6 @@ import salasdecomputo.clases.profesorDAO;
  *
  * @author aser
  */
-
 public class vistaPrograma extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(vistaPrograma.class.getName());
@@ -44,7 +43,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 e.isActivo(),
                 e.getCarrera(),});
         }
-        
+
         ArrayList<profesor> listaP = new ArrayList<>();
         listaP = profesorDAO.obtenerProfesores();
 
@@ -258,6 +257,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnEliminarEstudiante.addActionListener(this::btnEliminarEstudianteActionPerformed);
 
         btnEditarEstudiante.setText("Editar estudiante");
+        btnEditarEstudiante.addActionListener(this::btnEditarEstudianteActionPerformed);
 
         javax.swing.GroupLayout bgAdministrarEstudiantesLayout = new javax.swing.GroupLayout(bgAdministrarEstudiantes);
         bgAdministrarEstudiantes.setLayout(bgAdministrarEstudiantesLayout);
@@ -663,7 +663,6 @@ public class vistaPrograma extends javax.swing.JFrame {
         String depa = String.valueOf(comboAdminCarrera.getSelectedItem());
         int horaInicio = Integer.parseInt(comboAdminInicioProfe.getSelectedItem().toString());
         int horaFin = Integer.parseInt(comboAdminFinProfe.getSelectedItem().toString());
-        
 
         if (!(inputAdminNombreProfe.getText().isEmpty() && !(inputAdminContraseñaProfe.getText().isEmpty()))) {
             if (!(usr.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"))) {
@@ -714,30 +713,47 @@ public class vistaPrograma extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboAdminFinProfeActionPerformed
 
+    private void btnEditarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstudianteActionPerformed
+        // TODO add your handling code here:
+
+        int row = jTable1.getSelectedRow();
+        
+        int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
+        String nombre = jTable1.getValueAt(row, 1).toString();
+        String contraseña = jTable1.getValueAt(row, 2).toString();
+        boolean activo = Boolean.parseBoolean(jTable1.getValueAt(row, 3).toString());
+        String carrera = jTable1.getValueAt(row, 4).toString();
+        
+        estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
+        
+        
+
+    }//GEN-LAST:event_btnEditarEstudianteActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-        logger.log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(() -> new vistaPrograma().setVisible(true));
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new vistaPrograma().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgAdmin;
