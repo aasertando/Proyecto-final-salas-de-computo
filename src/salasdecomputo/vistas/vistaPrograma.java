@@ -726,7 +726,9 @@ public class vistaPrograma extends javax.swing.JFrame {
         
         estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
         
-        
+        vistaPopupActualizacion ventana = new vistaPopupActualizacion(e);
+        this.setVisible(false);
+        ventana.setVisible(true);
 
     }//GEN-LAST:event_btnEditarEstudianteActionPerformed
 

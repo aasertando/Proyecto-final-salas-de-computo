@@ -4,7 +4,11 @@
  */
 package salasdecomputo.vistas;
 
+import com.sun.jdi.connect.spi.Connection;
+import javax.swing.JOptionPane;
+import salasdecomputo.clases.controladores.coneccionDB;
 import salasdecomputo.clases.estudiante;
+import salasdecomputo.clases.estudianteDAO;
 import salasdecomputo.clases.profesor;
 
 /**
@@ -12,20 +16,19 @@ import salasdecomputo.clases.profesor;
  * @author aser
  */
 public class vistaPopupActualizacion extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(vistaPopupActualizacion.class.getName());
 
     /**
      * Creates new form vistaPopupActualizacion
      */
-    
     profesor p;
     estudiante e;
-    
-    public vistaPopupActualizacion(){
+
+    public vistaPopupActualizacion() {
         initComponents();
     }
-    
+
     public vistaPopupActualizacion(profesor p) {
         initComponents();
         jLabel1.setText("Actualizar profesor");
@@ -33,17 +36,29 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         txt2.setText("Contraseña profesor");
         txt3.setText("Departamento profesor");
         this.p = p;
+        jRadioButton1.setSelected(true);
     }
-    
+
     public vistaPopupActualizacion(estudiante e) {
         initComponents();
-        
+
         txt4.setVisible(false);
         txt5.setVisible(false);
         comboHoraInicio.setVisible(false);
         comboHoraFin.setVisible(false);
         this.e = e;
         
+        inputNombre.setText(e.getNombre());
+        inputContraseña.setText(e.getContraseña());
+        
+        if (e.isActivo()){
+            jRadioButton1.setSelected(true);
+        }else{
+            jRadioButton1.setSelected(true);
+        }
+        
+        comboCarrera.setSelectedItem(e.getCarrera());
+
     }
 
     /**
@@ -192,9 +207,30 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        
-        
-        
+        //si hay se ejecuta, si no no
+        if (!(e.getNombre().isEmpty())) {
+            
+            String nombre = inputNombre.getText();
+            String contraseña = inputContraseña.getText();
+            boolean activo = false;
+            
+            if (jRadioButton1.isSelected()){
+                activo = true;
+            }
+            
+            String carrera = comboCarrera.getSelectedItem().toString();
+            
+            if (estudianteDAO.actualizarEstudiante(e.getId(), nombre, contraseña, activo, carrera)) {
+                JOptionPane.showMessageDialog(rootPane, "Ingresado");
+                
+            } else{
+                JOptionPane.showMessageDialog(rootPane, "No se pudo ingresar");
+            }
+
+        } else{
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los datos");
+        }
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**

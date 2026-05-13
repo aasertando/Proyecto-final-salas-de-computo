@@ -127,6 +127,32 @@ public class estudianteDAO {
         return lista;
     }
     
+    public static boolean actualizarEstudiante(int id, String nombre, String contraseña, boolean activo, String carrera){
+        
+        Connection con = coneccionDB.conectarDB();
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement("UPDATE estudiantes SET nombre = ?, contraseña = ?, activo = ?, carrera = ? WHERE idEstudiante = ?");
+            
+            ps.setString(1, nombre);
+            ps.setString(2, contraseña);
+            ps.setBoolean(3, activo);
+            ps.setString(4, carrera);
+            ps.setInt(5, id);
+            
+            ps.executeUpdate();
+            
+            return true;
+            
+        }catch(SQLException e){
+            System.out.println("error");
+            System.out.println(e);
+            return false;
+        }
+        
+    }
+    
     
     
     
