@@ -222,6 +222,9 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
             
             if (estudianteDAO.actualizarEstudiante(e.getId(), nombre, contraseña, activo, carrera)) {
                 JOptionPane.showMessageDialog(rootPane, "Ingresado");
+                this.setVisible(false);
+                vistaPrograma ventana = new vistaPrograma();
+                ventana.setVisible(true);
                 
             } else{
                 JOptionPane.showMessageDialog(rootPane, "No se pudo ingresar");
