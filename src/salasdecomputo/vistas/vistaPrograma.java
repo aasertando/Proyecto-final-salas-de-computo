@@ -316,7 +316,6 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt15.setText("Hora fin:");
 
         comboAdminFinProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        comboAdminFinProfe.addActionListener(this::comboAdminFinProfeActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -769,10 +768,6 @@ public class vistaPrograma extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEliminarProfeActionPerformed
-
-    private void comboAdminFinProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAdminFinProfeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboAdminFinProfeActionPerformed
 
     private void btnEditarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEstudianteActionPerformed
         // TODO add your handling code here:
