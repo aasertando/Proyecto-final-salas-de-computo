@@ -310,12 +310,12 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt14.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         txt14.setText("Hora inicio:");
 
-        comboAdminInicioProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23" }));
+        comboAdminInicioProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
 
         txt15.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         txt15.setText("Hora fin:");
 
-        comboAdminFinProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "23" }));
+        comboAdminFinProfe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         comboAdminFinProfe.addActionListener(this::comboAdminFinProfeActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -620,6 +620,11 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         int row = jTable1.getSelectedRow();
 
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un estudiante");
+            return;
+        }
+
         int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
 //        String nombre = jTable1.getValueAt(row, 1).toString();
 //        String contraseña = jTable1.getValueAt(row, 2).toString();
@@ -693,7 +698,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Profesor ingresado satisfactoriamente");
 
                     ArrayList<profesor> lista = new ArrayList<>();
-                    lista = profesorDAO.obtenerProfesores(); 
+                    lista = profesorDAO.obtenerProfesores();
 
                     DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
 
@@ -773,6 +778,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int row = jTable1.getSelectedRow();
+        
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un estudiante");
+            return;
+        }
 
         int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
         String nombre = jTable1.getValueAt(row, 1).toString();
@@ -792,6 +802,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int row = jTable2.getSelectedRow();
+        
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un profesor");
+            return;
+        }
 
         int id = Integer.parseInt(jTable2.getValueAt(row, 0).toString());
         String nombre = jTable2.getValueAt(row, 1).toString();
