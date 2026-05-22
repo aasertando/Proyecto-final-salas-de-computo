@@ -37,6 +37,21 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         txt3.setText("Departamento profesor");
         this.p = p;
         jRadioButton1.setSelected(true);
+        btnActualizar.setVisible(false);
+        
+        inputNombre.setText(p.getNombre());
+        inputContraseña.setText(p.getContraseña());
+        
+        if (p.isActivo()){
+            jRadioButton1.setSelected(true);
+        }else{
+            jRadioButton1.setSelected(true);
+        }
+        
+        comboCarrera.setSelectedItem(p.getDepartamento());
+        comboHoraInicio.setSelectedItem(p.getHoraInicio());
+        comboHoraFin.setSelectedItem(p.getHoraFin());
+        
     }
 
     public vistaPopupActualizacion(estudiante e) {
@@ -46,6 +61,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         txt5.setVisible(false);
         comboHoraInicio.setVisible(false);
         comboHoraFin.setVisible(false);
+        btnActualizarProfe.setVisible(false);
         this.e = e;
         
         inputNombre.setText(e.getNombre());
@@ -86,6 +102,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         comboHoraFin = new javax.swing.JComboBox<>();
         txt5 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
+        btnActualizarProfe = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +139,9 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(this::btnActualizarActionPerformed);
 
+        btnActualizarProfe.setText("Actualizar");
+        btnActualizarProfe.addActionListener(this::btnActualizarProfeActionPerformed);
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -154,7 +174,10 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
                         .addComponent(txt5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnActualizar))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(btnActualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizarProfe)))
                 .addContainerGap(162, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
@@ -187,7 +210,9 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
                     .addComponent(txt5)
                     .addComponent(comboHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnActualizar)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnActualizarProfe))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
@@ -236,6 +261,10 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    private void btnActualizarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProfeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarProfeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +293,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizarProfe;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboCarrera;
     private javax.swing.JComboBox<String> comboHoraFin;

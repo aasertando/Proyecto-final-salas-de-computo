@@ -401,6 +401,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt5.setText("Selecccione un profesor para eliminarlo o actualizar sus datos");
 
         btnEditarProfe.setText("Editar profe");
+        btnEditarProfe.addActionListener(this::btnEditarProfeActionPerformed);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -707,6 +708,37 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     private void btnEliminarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProfeActionPerformed
         // TODO add your handling code here:
+
+        int row = jTable1.getSelectedRow();
+
+        int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
+        
+        if (profesorDAO.eliminarProfesor(id)) {
+            profesorDAO.eliminarProfesor(id);
+            JOptionPane.showMessageDialog(rootPane, "Profesor eliminado");
+
+            ArrayList<profesor> lista = new ArrayList<>();
+            lista = profesorDAO.obtenerProfesores();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+            modelo.setRowCount(0);
+
+            for (profesor p : lista) {
+                modelo.addRow(new Object[]{
+                    p.getId(),
+                    p.getNombre(),
+                    p.getContraseña(),
+                    p.isActivo(),
+                    p.getDepartamento(),
+                    p.getHoraInicio(),
+                    p.getHoraFin(),});
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar profesor");
+        }
+
     }//GEN-LAST:event_btnEliminarProfeActionPerformed
 
     private void comboAdminFinProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAdminFinProfeActionPerformed
@@ -717,20 +749,41 @@ public class vistaPrograma extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int row = jTable1.getSelectedRow();
-        
+
         int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
         String nombre = jTable1.getValueAt(row, 1).toString();
         String contraseña = jTable1.getValueAt(row, 2).toString();
         boolean activo = Boolean.parseBoolean(jTable1.getValueAt(row, 3).toString());
         String carrera = jTable1.getValueAt(row, 4).toString();
-        
+
         estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
-        
+
         vistaPopupActualizacion ventana = new vistaPopupActualizacion(e);
         this.setVisible(false);
         ventana.setVisible(true);
 
     }//GEN-LAST:event_btnEditarEstudianteActionPerformed
+
+    private void btnEditarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfeActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable1.getSelectedRow();
+
+        int id = Integer.parseInt(jTable2.getValueAt(row, 0).toString());
+        String nombre = jTable2.getValueAt(row, 1).toString();
+        String contraseña = jTable2.getValueAt(row, 2).toString();
+        boolean activo = Boolean.parseBoolean(jTable2.getValueAt(row, 3).toString());
+        String depa = jTable2.getValueAt(row, 4).toString();
+        int horaInicio = Integer.parseInt(jTable2.getValueAt(row, 5).toString());
+        int horaFin = Integer.parseInt(jTable2.getValueAt(row, 6).toString());
+
+        profesor p = new profesor(id, nombre, contraseña, activo, depa, horaInicio, horaFin);
+
+        vistaPopupActualizacion ventana = new vistaPopupActualizacion(p);
+        this.setVisible(false);
+        ventana.setVisible(true);
+        
+    }//GEN-LAST:event_btnEditarProfeActionPerformed
 
     /**
      * @param args the command line arguments
