@@ -10,6 +10,7 @@ import salasdecomputo.clases.controladores.coneccionDB;
 import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
 import salasdecomputo.clases.profesor;
+import salasdecomputo.clases.profesorDAO;
 
 /**
  *
@@ -27,10 +28,12 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     public vistaPopupActualizacion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public vistaPopupActualizacion(profesor p) {
         initComponents();
+        this.setLocationRelativeTo(null);
         jLabel1.setText("Actualizar profesor");
         txt1.setText("Nombre profesor");
         txt2.setText("Contraseña profesor");
@@ -38,41 +41,42 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         this.p = p;
         jRadioButton1.setSelected(true);
         btnActualizar.setVisible(false);
-        
+
         inputNombre.setText(p.getNombre());
         inputContraseña.setText(p.getContraseña());
-        
-        if (p.isActivo()){
+
+        if (p.isActivo()) {
             jRadioButton1.setSelected(true);
-        }else{
+        } else {
             jRadioButton1.setSelected(true);
         }
-        
+
         comboCarrera.setSelectedItem(p.getDepartamento());
         comboHoraInicio.setSelectedItem(p.getHoraInicio());
         comboHoraFin.setSelectedItem(p.getHoraFin());
-        
+
     }
 
     public vistaPopupActualizacion(estudiante e) {
         initComponents();
-
+        this.setLocationRelativeTo(null);
         txt4.setVisible(false);
         txt5.setVisible(false);
         comboHoraInicio.setVisible(false);
         comboHoraFin.setVisible(false);
         btnActualizarProfe.setVisible(false);
+        btnActualizar.setVisible(true);
         this.e = e;
-        
+
         inputNombre.setText(e.getNombre());
         inputContraseña.setText(e.getContraseña());
-        
-        if (e.isActivo()){
+
+        if (e.isActivo()) {
             jRadioButton1.setSelected(true);
-        }else{
+        } else {
             jRadioButton1.setSelected(true);
         }
-        
+
         comboCarrera.setSelectedItem(e.getCarrera());
 
     }
@@ -233,36 +237,65 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         //si hay se ejecuta, si no no
-        if (!(e.getNombre().isEmpty())) {
-            
+        if (inputNombre.getText().isEmpty() || inputContraseña.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los datos");
+        } else {
+
             String nombre = inputNombre.getText();
             String contraseña = inputContraseña.getText();
             boolean activo = false;
-            
-            if (jRadioButton1.isSelected()){
+
+            if (jRadioButton1.isSelected()) {
                 activo = true;
             }
-            
+
             String carrera = comboCarrera.getSelectedItem().toString();
-            
+
             if (estudianteDAO.actualizarEstudiante(e.getId(), nombre, contraseña, activo, carrera)) {
                 JOptionPane.showMessageDialog(rootPane, "Ingresado");
                 this.setVisible(false);
                 vistaPrograma ventana = new vistaPrograma();
                 ventana.setVisible(true);
-                
-            } else{
+
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "No se pudo ingresar");
             }
 
-        } else{
-            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los datos");
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnActualizarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProfeActionPerformed
         // TODO add your handling code here:
+
+        if (inputNombre.getText().isEmpty() || inputContraseña.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los datos");
+        } else {
+
+            String nombre = inputNombre.getText();
+            String contraseña = inputContraseña.getText();
+            boolean activo = false;
+
+            if (jRadioButton1.isSelected()) {
+                activo = true;
+            }
+
+            String depa = comboCarrera.getSelectedItem().toString();
+            int horaInicio = Integer.parseInt(comboHoraInicio.getSelectedItem().toString());
+            int horaFin = Integer.parseInt(comboHoraFin.getSelectedItem().toString());
+
+            if (profesorDAO.actualizarProfesor(p.getId(), nombre, contraseña, activo, depa, horaInicio, horaFin)) {
+                JOptionPane.showMessageDialog(rootPane, "Ingresado");
+                this.setVisible(false);
+                vistaPrograma ventana = new vistaPrograma();
+                ventana.setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se pudo ingresar");
+            }
+
+        }
+
     }//GEN-LAST:event_btnActualizarProfeActionPerformed
 
     /**
