@@ -791,7 +791,7 @@ public class vistaPrograma extends javax.swing.JFrame {
     private void btnEditarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfeActionPerformed
         // TODO add your handling code here:
 
-        int row = jTable1.getSelectedRow();
+        int row = jTable2.getSelectedRow();
 
         int id = Integer.parseInt(jTable2.getValueAt(row, 0).toString());
         String nombre = jTable2.getValueAt(row, 1).toString();

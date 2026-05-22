@@ -129,4 +129,33 @@ public class profesorDAO {
         }
         return lista;
     }
+
+    public static boolean actualizarProfesor(int id, String nombre, String contraseña, boolean activo, String depa, int horaInicio, int horaFin) {
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement("UPDATE profesor SET nombre = ?, contraseña = ?, activo = ?, departamento = ?, horaInicio = ?, horaFin = ? WHERE idProfesor = ?");
+
+            ps.setString(1, nombre);
+            ps.setString(2, contraseña);
+            ps.setBoolean(3, activo);
+            ps.setString(4, depa);
+            ps.setInt(5, horaInicio);
+            ps.setInt(6, horaFin);
+            ps.setInt(7, id);
+
+            ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("error");
+            System.out.println(e);
+            return false;
+        }
+
+    }
+
 }
