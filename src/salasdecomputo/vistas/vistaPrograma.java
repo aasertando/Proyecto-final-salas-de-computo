@@ -691,6 +691,25 @@ public class vistaPrograma extends javax.swing.JFrame {
 
                 if (consulta) {
                     JOptionPane.showMessageDialog(rootPane, "Profesor ingresado satisfactoriamente");
+
+                    ArrayList<profesor> lista = new ArrayList<>();
+                    lista = profesorDAO.obtenerProfesores(); 
+
+                    DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+
+                    modelo.setRowCount(0);
+
+                    for (profesor p : lista) {
+                        modelo.addRow(new Object[]{
+                            p.getId(),
+                            p.getNombre(),
+                            p.getContraseña(),
+                            p.isActivo(),
+                            p.getDepartamento(),
+                            p.getHoraInicio(),
+                            p.getHoraFin(),});
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el Profesor");
                 }
@@ -709,18 +728,23 @@ public class vistaPrograma extends javax.swing.JFrame {
     private void btnEliminarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProfeActionPerformed
         // TODO add your handling code here:
 
-        int row = jTable1.getSelectedRow();
+        int row = jTable2.getSelectedRow();
 
-        int id = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
-        
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un profesor");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable2.getValueAt(row, 0).toString());
+
         if (profesorDAO.eliminarProfesor(id)) {
-            profesorDAO.eliminarProfesor(id);
+//            profesorDAO.eliminarProfesor(id);
             JOptionPane.showMessageDialog(rootPane, "Profesor eliminado");
 
             ArrayList<profesor> lista = new ArrayList<>();
             lista = profesorDAO.obtenerProfesores();
 
-            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
 
             modelo.setRowCount(0);
 
@@ -766,7 +790,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     private void btnEditarProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfeActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable1.getSelectedRow();
 
         int id = Integer.parseInt(jTable2.getValueAt(row, 0).toString());
@@ -782,7 +806,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         vistaPopupActualizacion ventana = new vistaPopupActualizacion(p);
         this.setVisible(false);
         ventana.setVisible(true);
-        
+
     }//GEN-LAST:event_btnEditarProfeActionPerformed
 
     /**
