@@ -13,13 +13,15 @@ public class computador {
     private String id;
     private String marca;
     private boolean disponible;
+    private int salaPerteneciente;
 
-    public computador(String id, String marca, boolean disponible) {
+    public computador(String id, String marca, boolean disponible, int salaPerteneciente) {
         this.id = id;
         this.marca = marca;
         this.disponible = disponible;
+        this.salaPerteneciente = salaPerteneciente;
     }
-    
+
     //inicio getter y setter
     public String getId() {
         return id;
@@ -44,5 +46,14 @@ public class computador {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+
+    public int getSalaPerteneciente() {
+        return salaPerteneciente;
+    }
+
+    public void setSalaPerteneciente(int salaPerteneciente) {
+        this.salaPerteneciente = salaPerteneciente;
+    }
     //fin getter y setter
+    
 }

@@ -131,6 +131,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         bgEstudiante = new javax.swing.JPanel();
         txt2 = new javax.swing.JLabel();
         btnEstudianteCerrarSesion = new javax.swing.JButton();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        txt20 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        txt21 = new javax.swing.JLabel();
         bgProfesor = new javax.swing.JPanel();
         txt3 = new javax.swing.JLabel();
         btnProfesorCerrarSesion = new javax.swing.JButton();
@@ -479,15 +484,62 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnEstudianteCerrarSesion.setText("Cerrar sesión");
         btnEstudianteCerrarSesion.addActionListener(this::btnEstudianteCerrarSesionActionPerformed);
 
+        txt20.setText("Prestar portátiles");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt20)
+                .addContainerGap(711, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt20)
+                .addContainerGap(477, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Prestar portátiles", jPanel2);
+
+        txt21.setText("Cambiar contraseña");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt21)
+                .addContainerGap(686, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt21)
+                .addContainerGap(477, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Cambiar contraseña", jPanel3);
+
         javax.swing.GroupLayout bgEstudianteLayout = new javax.swing.GroupLayout(bgEstudiante);
         bgEstudiante.setLayout(bgEstudianteLayout);
         bgEstudianteLayout.setHorizontalGroup(
             bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgEstudianteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
-                .addComponent(btnEstudianteCerrarSesion)
+                .addGroup(bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgEstudianteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txt2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEstudianteCerrarSesion))
+                    .addGroup(bgEstudianteLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         bgEstudianteLayout.setVerticalGroup(
@@ -495,9 +547,14 @@ public class vistaPrograma extends javax.swing.JFrame {
             .addGroup(bgEstudianteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(bgEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEstudianteCerrarSesion)
-                    .addComponent(txt2))
-                .addContainerGap(587, Short.MAX_VALUE))
+                    .addGroup(bgEstudianteLayout.createSequentialGroup()
+                        .addComponent(txt2)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgEstudianteLayout.createSequentialGroup()
+                        .addComponent(btnEstudianteCerrarSesion)
+                        .addGap(18, 18, 18)))
+                .addComponent(jTabbedPane3)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Estudiante", bgEstudiante);
@@ -871,10 +928,13 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JTextField inputAdminNombre;
     private javax.swing.JTextField inputAdminNombreProfe;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel txt1;
@@ -885,6 +945,8 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JLabel txt14;
     private javax.swing.JLabel txt15;
     private javax.swing.JLabel txt2;
+    private javax.swing.JLabel txt20;
+    private javax.swing.JLabel txt21;
     private javax.swing.JLabel txt3;
     private javax.swing.JLabel txt4;
     private javax.swing.JLabel txt5;
