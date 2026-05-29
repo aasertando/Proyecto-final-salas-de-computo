@@ -11,14 +11,12 @@ package salasdecomputo.clases;
 public class computador {
     
     private String id;
-    private String marca;
-    private boolean disponible;
+    private String descripcion;
     private int salaPerteneciente;
 
-    public computador(String id, String marca, boolean disponible, int salaPerteneciente) {
+    public computador(String id, String descripcion, int salaPerteneciente) {
         this.id = id;
-        this.marca = marca;
-        this.disponible = disponible;
+        this.descripcion = descripcion;
         this.salaPerteneciente = salaPerteneciente;
     }
 
@@ -31,20 +29,12 @@ public class computador {
         this.id = id;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getSalaPerteneciente() {
