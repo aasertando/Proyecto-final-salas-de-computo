@@ -482,10 +482,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Identificacion", "Descripcion", "Disponibilidad"
@@ -570,10 +567,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Identificacion", "Descripcion", "Sala perteneciente"
@@ -676,10 +670,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Identificacion", "Nombre", "Capacidad"
@@ -1234,6 +1225,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{
                     po.getId(),
                     po.getEspecificaciones(),
+                    po.isDisponible(),
                 });
             }
 
@@ -1259,7 +1251,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         portatil po = new portatil(id, espec, disponible);
 
-        vistaPopupActualizacion ventana = new vistaPopupActualizacion();
+        vistaPopupActualizacion ventana = new vistaPopupActualizacion(po);
         this.setVisible(false);
         ventana.setVisible(true);
         

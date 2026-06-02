@@ -80,9 +80,11 @@
                           <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnActualizarProfe" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnActualizarPortatil" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="162" max="32767" attributes="0"/>
+                  <EmptySpace pref="136" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -125,6 +127,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnActualizarProfe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnActualizarPortatil" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="119" max="32767" attributes="0"/>
               </Group>
@@ -285,7 +288,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
+            <Property name="text" type="java.lang.String" value="Actualizar estudiante"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
@@ -293,10 +296,18 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizarProfe">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
+            <Property name="text" type="java.lang.String" value="Actualizar profe"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarProfeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnActualizarPortatil">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar Portatil"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarPortatilActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

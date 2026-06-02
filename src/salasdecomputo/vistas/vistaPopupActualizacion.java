@@ -5,10 +5,14 @@
 package salasdecomputo.vistas;
 
 import com.sun.jdi.connect.spi.Connection;
+import java.awt.HeadlessException;
+import java.awt.Label;
 import javax.swing.JOptionPane;
 import salasdecomputo.clases.controladores.coneccionDB;
 import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
+import salasdecomputo.clases.portatil;
+import salasdecomputo.clases.portatilDAO;
 import salasdecomputo.clases.profesor;
 import salasdecomputo.clases.profesorDAO;
 
@@ -16,6 +20,7 @@ import salasdecomputo.clases.profesorDAO;
  *
  * @author aser
  */
+
 public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(vistaPopupActualizacion.class.getName());
@@ -25,6 +30,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
      */
     profesor p;
     estudiante e;
+    portatil po;
 
     public vistaPopupActualizacion() {
         initComponents();
@@ -81,6 +87,35 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     }
 
+    public vistaPopupActualizacion(portatil po) {
+        initComponents();
+        this.po = po;
+        this.setLocationRelativeTo(null);
+        
+        jRadioButton1.setText("Disponible");
+        jRadioButton2.setText("Ocupado");
+        
+        txt3.setVisible(false);
+        comboCarrera.setVisible(false);
+        comboHoraFin.setVisible(false);
+        txt4.setVisible(false);
+        comboHoraInicio.setVisible(false);
+        txt5.setVisible(false);
+        btnActualizar.setVisible(false);
+        btnActualizarProfe.setVisible(false);
+        jLabel1.setText("Actualizar portatil");
+        txt2.setVisible(false);
+        
+        txt1.setText("Especificaciones");
+        
+        if (po.isDisponible()) {
+            jRadioButton1.setSelected(true);
+        } else {
+            jRadioButton1.setSelected(true);
+        }
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,6 +142,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         txt5 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         btnActualizarProfe = new javax.swing.JButton();
+        btnActualizarPortatil = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,11 +176,14 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         txt5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         txt5.setText("Hora fin:");
 
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setText("Actualizar estudiante");
         btnActualizar.addActionListener(this::btnActualizarActionPerformed);
 
-        btnActualizarProfe.setText("Actualizar");
+        btnActualizarProfe.setText("Actualizar profe");
         btnActualizarProfe.addActionListener(this::btnActualizarProfeActionPerformed);
+
+        btnActualizarPortatil.setText("Actualizar Portatil");
+        btnActualizarPortatil.addActionListener(this::btnActualizarPortatilActionPerformed);
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -181,8 +220,10 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(btnActualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnActualizarProfe)))
-                .addContainerGap(162, Short.MAX_VALUE))
+                        .addComponent(btnActualizarProfe)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizarPortatil)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +257,8 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
-                    .addComponent(btnActualizarProfe))
+                    .addComponent(btnActualizarProfe)
+                    .addComponent(btnActualizarPortatil))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
@@ -298,34 +340,59 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnActualizarProfeActionPerformed
 
+    private void btnActualizarPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPortatilActionPerformed
+        // TODO add your handling code here:
+
+        String espec = inputNombre.getText();
+        boolean disponible = false;
+
+        if (jRadioButton1.isSelected()) {
+            disponible = true;
+        }
+
+        if (portatilDAO.actualizarPortatil(po.getId(), espec, disponible)) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresado");
+            this.setVisible(false);
+            vistaPrograma ventana = new vistaPrograma();
+            ventana.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No se pudo ingresar");
+        }
+
+    
+
+    }//GEN-LAST:event_btnActualizarPortatilActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new vistaPopupActualizacion().setVisible(true));
+    } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+        logger.log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(() -> new vistaPopupActualizacion().setVisible(true));
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizarPortatil;
     private javax.swing.JButton btnActualizarProfe;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboCarrera;
