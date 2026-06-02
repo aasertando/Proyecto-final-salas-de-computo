@@ -11,12 +11,12 @@ package salasdecomputo.clases;
 public class computador {
     
     private String id;
-    private String descripcion;
+    private String especificaciones;
     private int salaPerteneciente;
 
-    public computador(String id, String descripcion, int salaPerteneciente) {
+    public computador(String id, String especificaciones, int salaPerteneciente) {
         this.id = id;
-        this.descripcion = descripcion;
+        this.especificaciones = especificaciones;
         this.salaPerteneciente = salaPerteneciente;
     }
 
@@ -29,12 +29,12 @@ public class computador {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getEspecificaciones() {
+        return especificaciones;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setEspecificaciones(String especificaciones) {
+        this.especificaciones = especificaciones;
     }
 
     public int getSalaPerteneciente() {
