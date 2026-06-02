@@ -818,6 +818,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Editar portatil"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminPortatilesEditarPortatilActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

@@ -507,6 +507,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminPortatilesEliminarPortatil.addActionListener(this::btnAdminPortatilesEliminarPortatilActionPerformed);
 
         btnAdminPortatilesEditarPortatil.setText("Editar portatil");
+        btnAdminPortatilesEditarPortatil.addActionListener(this::btnAdminPortatilesEditarPortatilActionPerformed);
 
         javax.swing.GroupLayout bgPortatilesLayout = new javax.swing.GroupLayout(bgPortatiles);
         bgPortatiles.setLayout(bgPortatilesLayout);
@@ -1191,6 +1192,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{
                     po.getId(),
                     po.getEspecificaciones(),
+                    po.isDisponible()
                 });
             }
 
@@ -1240,6 +1242,28 @@ public class vistaPrograma extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnAdminPortatilesEliminarPortatilActionPerformed
+
+    private void btnAdminPortatilesEditarPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPortatilesEditarPortatilActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable3.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un portatil");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable3.getValueAt(row, 0).toString());
+        String espec = jTable3.getValueAt(row, 1).toString();
+        boolean disponible = Boolean.parseBoolean(jTable3.getValueAt(row, 2).toString());
+
+        portatil po = new portatil(id, espec, disponible);
+
+        vistaPopupActualizacion ventana = new vistaPopupActualizacion();
+        this.setVisible(false);
+        ventana.setVisible(true);
+        
+    }//GEN-LAST:event_btnAdminPortatilesEditarPortatilActionPerformed
 
     /**
      * @param args the command line arguments
