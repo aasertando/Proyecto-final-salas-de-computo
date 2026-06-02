@@ -504,6 +504,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt6.setText("Selecccione un portatil para eliminarlo o actualizar sus datos");
 
         btnAdminPortatilesEliminarPortatil.setText("Eliminar portatil");
+        btnAdminPortatilesEliminarPortatil.addActionListener(this::btnAdminPortatilesEliminarPortatilActionPerformed);
 
         btnAdminPortatilesEditarPortatil.setText("Editar portatil");
 
@@ -1145,7 +1146,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         //        estudiante e = new estudiante(id, nombre, contraseña, activo, carrera);
 
         if (estudianteDAO.eliminarEstudiante(id)) {
-            estudianteDAO.eliminarEstudiante(id);
+//            estudianteDAO.eliminarEstudiante(id);
             JOptionPane.showMessageDialog(rootPane, "Estudiante eliminado");
 
             ArrayList<estudiante> lista = new ArrayList<>();
@@ -1204,6 +1205,41 @@ public class vistaPrograma extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnAdminPortatilesCrearPortatilActionPerformed
+
+    private void btnAdminPortatilesEliminarPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPortatilesEliminarPortatilActionPerformed
+        // TODO add your handling code here:
+        
+         int row = jTable3.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un portatil");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable3.getValueAt(row, 0).toString());
+
+        if (portatilDAO.eliminarPortatil(id)) {
+            JOptionPane.showMessageDialog(rootPane, "Portatil eliminado");
+
+            ArrayList<portatil> lista = new ArrayList<>();
+            lista = portatilDAO.obtenerPortatiles();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
+
+            modelo.setRowCount(0);
+
+            for (portatil po : lista) {
+                modelo.addRow(new Object[]{
+                    po.getId(),
+                    po.getEspecificaciones(),
+                });
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar portatil");
+        }
+        
+    }//GEN-LAST:event_btnAdminPortatilesEliminarPortatilActionPerformed
 
     /**
      * @param args the command line arguments
