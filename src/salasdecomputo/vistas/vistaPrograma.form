@@ -755,6 +755,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Crear portatil"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminPortatilesCrearPortatilActionPerformed"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
                       <AuxValues>
@@ -1089,7 +1092,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnAdminSalasCrearComputador">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Crear computador"/>
+                        <Property name="text" type="java.lang.String" value="Crear sala"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="txt23">
@@ -1121,8 +1124,8 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="3" rowCount="4">
                                 <Column editable="false" title="Identificacion" type="java.lang.Object"/>
-                                <Column editable="false" title="Descripcion" type="java.lang.Object"/>
-                                <Column editable="false" title="Sala perteneciente" type="java.lang.Object"/>
+                                <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                                <Column editable="false" title="Capacidad" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

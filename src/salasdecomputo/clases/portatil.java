@@ -10,23 +10,23 @@ package salasdecomputo.clases;
  */
 public class portatil {
     
-    private int idComputador;
+    private int id;
     private String especificaciones;
     private boolean disponible;
 
     public portatil(int idComputador, String especificaciones, boolean disponible) {
-        this.idComputador = idComputador;
+        this.id = idComputador;
         this.especificaciones = especificaciones;
         this.disponible = disponible;
     }
 
     //inicio getter y setter
-    public int getIdComputador() {
-        return idComputador;
+    public int getId() {
+        return id;
     }
 
-    public void setIdComputador(int idComputador) {
-        this.idComputador = idComputador;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEspecificaciones() {

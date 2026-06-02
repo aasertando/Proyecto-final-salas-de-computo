@@ -7,10 +7,16 @@ package salasdecomputo.vistas;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import salasdecomputo.clases.computador;
+import salasdecomputo.clases.computadorDAO;
 import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
+import salasdecomputo.clases.portatil;
+import salasdecomputo.clases.portatilDAO;
 import salasdecomputo.clases.profesor;
 import salasdecomputo.clases.profesorDAO;
+import salasdecomputo.clases.sala;
+import salasdecomputo.clases.salaDAO;
 
 /**
  *
@@ -58,6 +64,45 @@ public class vistaPrograma extends javax.swing.JFrame {
                 p.getDepartamento(),
                 p.getHoraInicio(),
                 p.getHoraFin(),});
+        }
+
+        ArrayList<computador> listaC = new ArrayList<>();
+        listaC = computadorDAO.obtenerComputadores();
+
+        DefaultTableModel modeloC = (DefaultTableModel) jTable4.getModel();
+
+        for (computador c : listaC) {
+            modeloC.addRow(new Object[]{
+                c.getId(),
+                c.getEspecificaciones(),
+                c.getSalaPerteneciente()
+            });
+        }
+
+        ArrayList<portatil> listaPO = new ArrayList<>();
+        listaPO = portatilDAO.obtenerPortatiles();
+
+        DefaultTableModel modeloPO = (DefaultTableModel) jTable3.getModel();
+
+        for (portatil po : listaPO) {
+            modeloPO.addRow(new Object[]{
+                po.getId(),
+                po.getEspecificaciones(),
+                po.isDisponible()
+            });
+        }
+
+        ArrayList<sala> listaS = new ArrayList<>();
+        listaS = salaDAO.obtenerSalas();
+
+        DefaultTableModel modeloS = (DefaultTableModel) jTable5.getModel();
+
+        for (sala s : listaS) {
+            modeloPO.addRow(new Object[]{
+                s.getId(),
+                s.getNombre(),
+                s.getCapacidad()
+            });
         }
 
     }
@@ -433,6 +478,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         jLabel2.setText("Especificaciones:");
 
         btnAdminPortatilesCrearPortatil.setText("Crear portatil");
+        btnAdminPortatilesCrearPortatil.addActionListener(this::btnAdminPortatilesCrearPortatilActionPerformed);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -618,7 +664,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         jLabel7.setText("Capacidad:");
 
-        btnAdminSalasCrearComputador.setText("Crear computador");
+        btnAdminSalasCrearComputador.setText("Crear sala");
 
         txt23.setText("Selecccione un computador para eliminarlo o actualizar sus datos");
 
@@ -634,7 +680,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Identificacion", "Descripcion", "Sala perteneciente"
+                "Identificacion", "Nombre", "Capacidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -901,43 +947,43 @@ public class vistaPrograma extends javax.swing.JFrame {
                 //                modelo.setRowCount(0);
                 //
                 //                for (estudiante e : lista) {
-                    //                    modelo.addRow(new Object[]{
-                        //                        e.getId(),
-                        //                        e.getNombre(),
-                        //                        e.getContraseña(),
-                        //                        e.isActivo(),
-                        //                        e.getCarrera(),});
+                //                    modelo.addRow(new Object[]{
+                //                        e.getId(),
+                //                        e.getNombre(),
+                //                        e.getContraseña(),
+                //                        e.isActivo(),
+                //                        e.getCarrera(),});
                 //                }
 
-            if (consulta) {
-                JOptionPane.showMessageDialog(rootPane, "Profesor ingresado satisfactoriamente");
+                if (consulta) {
+                    JOptionPane.showMessageDialog(rootPane, "Profesor ingresado satisfactoriamente");
 
-                ArrayList<profesor> lista = new ArrayList<>();
-                lista = profesorDAO.obtenerProfesores();
+                    ArrayList<profesor> lista = new ArrayList<>();
+                    lista = profesorDAO.obtenerProfesores();
 
-                DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+                    DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
 
-                modelo.setRowCount(0);
+                    modelo.setRowCount(0);
 
-                for (profesor p : lista) {
-                    modelo.addRow(new Object[]{
-                        p.getId(),
-                        p.getNombre(),
-                        p.getContraseña(),
-                        p.isActivo(),
-                        p.getDepartamento(),
-                        p.getHoraInicio(),
-                        p.getHoraFin(),});
+                    for (profesor p : lista) {
+                        modelo.addRow(new Object[]{
+                            p.getId(),
+                            p.getNombre(),
+                            p.getContraseña(),
+                            p.isActivo(),
+                            p.getDepartamento(),
+                            p.getHoraInicio(),
+                            p.getHoraFin(),});
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el Profesor");
+                }
+
+                inputAdminNombreProfe.setText("");
+                inputAdminContraseñaProfe.setText("");
+
             }
-
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el Profesor");
-        }
-
-        inputAdminNombreProfe.setText("");
-        inputAdminContraseñaProfe.setText("");
-
-        }
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos");
@@ -1001,7 +1047,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                     p.getDepartamento(),
                     p.getHoraInicio(),
                     p.getHoraFin(),});
-        }
+            }
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar profesor");
@@ -1037,18 +1083,18 @@ public class vistaPrograma extends javax.swing.JFrame {
                         e.getContraseña(),
                         e.isActivo(),
                         e.getCarrera(),});
+                }
+
+                if (consulta) {
+                    JOptionPane.showMessageDialog(rootPane, "Estudiante ingresado satisfactoriamente");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el estudiante");
+                }
+
+                inputAdminNombreEstudiante.setText("");
+                inputAdminContraseñaEstudiante.setText("");
+
             }
-
-            if (consulta) {
-                JOptionPane.showMessageDialog(rootPane, "Estudiante ingresado satisfactoriamente");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el estudiante");
-            }
-
-            inputAdminNombreEstudiante.setText("");
-            inputAdminContraseñaEstudiante.setText("");
-
-        }
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Debe llenar todos los campos");
@@ -1116,12 +1162,48 @@ public class vistaPrograma extends javax.swing.JFrame {
                     e.getContraseña(),
                     e.isActivo(),
                     e.getCarrera(),});
-        }
+            }
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar estudiante");
         }
     }//GEN-LAST:event_btnAdminEliminarEstudianteActionPerformed
+
+    private void btnAdminPortatilesCrearPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPortatilesCrearPortatilActionPerformed
+        // TODO add your handling code here:
+
+        String espec = inputAdminPortatilesEspecificaciones.getText();
+
+        if (espec.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
+        } else {
+            
+            boolean consulta = portatilDAO.ingresarPortatil(espec);
+            ArrayList<portatil> lista = new ArrayList<>();
+            lista = portatilDAO.obtenerPortatiles();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable3.getModel();
+
+            modelo.setRowCount(0);
+
+            for (portatil po : lista) {
+                modelo.addRow(new Object[]{
+                    po.getId(),
+                    po.getEspecificaciones(),
+                });
+            }
+
+            if (consulta) {
+                JOptionPane.showMessageDialog(rootPane, "Portatil ingresado satisfactoriamente");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el Portatil");
+            }
+
+            inputAdminPortatilesEspecificaciones.setText("");
+
+        }
+
+    }//GEN-LAST:event_btnAdminPortatilesCrearPortatilActionPerformed
 
     /**
      * @param args the command line arguments
