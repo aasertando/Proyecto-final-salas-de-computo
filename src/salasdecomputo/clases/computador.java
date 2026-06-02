@@ -10,22 +10,22 @@ package salasdecomputo.clases;
  */
 public class computador {
     
-    private String id;
+    private int id;
     private String especificaciones;
     private int salaPerteneciente;
 
-    public computador(String id, String especificaciones, int salaPerteneciente) {
+    public computador(int id, String especificaciones, int salaPerteneciente) {
         this.id = id;
         this.especificaciones = especificaciones;
         this.salaPerteneciente = salaPerteneciente;
     }
 
     //inicio getter y setter
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
