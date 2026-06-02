@@ -98,7 +98,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         DefaultTableModel modeloS = (DefaultTableModel) jTable5.getModel();
 
         for (sala s : listaS) {
-            modeloPO.addRow(new Object[]{
+            modeloS.addRow(new Object[]{
                 s.getId(),
                 s.getNombre(),
                 s.getCapacidad()
@@ -183,6 +183,18 @@ public class vistaPrograma extends javax.swing.JFrame {
         txt6 = new javax.swing.JLabel();
         btnAdminPortatilesEliminarPortatil = new javax.swing.JButton();
         btnAdminPortatilesEditarPortatil = new javax.swing.JButton();
+        bgSalas = new javax.swing.JPanel();
+        btnAdminSalasEditarSala = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        btnAdminSalasCrearSala = new javax.swing.JButton();
+        txt23 = new javax.swing.JLabel();
+        inputAdminSalasCapacidad = new javax.swing.JTextField();
+        btnAdminSalasEliminarSala = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        inputAdminSalasNombre = new javax.swing.JTextField();
         bgComputadores = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -197,18 +209,6 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminComputadoresEditarComputador = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         inputAdminComputadoresCantidadAIngresar = new javax.swing.JTextField();
-        bgSalas = new javax.swing.JPanel();
-        btnAdminSalasEditarSala = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        btnAdminSalasCrearComputador = new javax.swing.JButton();
-        txt23 = new javax.swing.JLabel();
-        inputAdminSalasCapacidad = new javax.swing.JTextField();
-        btnAdminSalasEliminarSala = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        inputAdminSalasNombre = new javax.swing.JTextField();
         bgEstudiante = new javax.swing.JPanel();
         txt2 = new javax.swing.JLabel();
         btnEstudianteCerrarSesion = new javax.swing.JButton();
@@ -557,6 +557,97 @@ public class vistaPrograma extends javax.swing.JFrame {
 
         tabbedpane.addTab("Portatiles", bgPortatiles);
 
+        btnAdminSalasEditarSala.setText("Editar sala");
+        btnAdminSalasEditarSala.addActionListener(this::btnAdminSalasEditarSalaActionPerformed);
+
+        jLabel7.setText("Capacidad:");
+
+        btnAdminSalasCrearSala.setText("Crear sala");
+        btnAdminSalasCrearSala.addActionListener(this::btnAdminSalasCrearSalaActionPerformed);
+
+        txt23.setText("Selecccione un computador para eliminarlo o actualizar sus datos");
+
+        btnAdminSalasEliminarSala.setText("Eliminar sala");
+        btnAdminSalasEliminarSala.addActionListener(this::btnAdminSalasEliminarSalaActionPerformed);
+
+        jLabel8.setText("Nombre:");
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Identificacion", "Nombre", "Capacidad"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jTable5);
+
+        jLabel9.setText("Ingresar sala");
+
+        javax.swing.GroupLayout bgSalasLayout = new javax.swing.GroupLayout(bgSalas);
+        bgSalas.setLayout(bgSalasLayout);
+        bgSalasLayout.setHorizontalGroup(
+            bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgSalasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(bgSalasLayout.createSequentialGroup()
+                        .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(bgSalasLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputAdminSalasNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAdminSalasCrearSala)
+                            .addComponent(txt23)
+                            .addGroup(bgSalasLayout.createSequentialGroup()
+                                .addComponent(btnAdminSalasEliminarSala)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAdminSalasEditarSala))
+                            .addGroup(bgSalasLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputAdminSalasCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 358, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        bgSalasLayout.setVerticalGroup(
+            bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgSalasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(inputAdminSalasNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(inputAdminSalasCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(btnAdminSalasCrearSala)
+                .addGap(18, 18, 18)
+                .addComponent(txt23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdminSalasEliminarSala)
+                    .addComponent(btnAdminSalasEditarSala))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        tabbedpane.addTab("Salas", bgSalas);
+
         jLabel4.setText("Ingresar computador");
 
         jLabel5.setText("Especificaciones:");
@@ -655,94 +746,6 @@ public class vistaPrograma extends javax.swing.JFrame {
         );
 
         tabbedpane.addTab("Computadores", bgComputadores);
-
-        btnAdminSalasEditarSala.setText("Editar sala");
-
-        jLabel7.setText("Capacidad:");
-
-        btnAdminSalasCrearComputador.setText("Crear sala");
-
-        txt23.setText("Selecccione un computador para eliminarlo o actualizar sus datos");
-
-        btnAdminSalasEliminarSala.setText("Eliminar sala");
-
-        jLabel8.setText("Nombre:");
-
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Identificacion", "Nombre", "Capacidad"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(jTable5);
-
-        jLabel9.setText("Ingresar sala");
-
-        javax.swing.GroupLayout bgSalasLayout = new javax.swing.GroupLayout(bgSalas);
-        bgSalas.setLayout(bgSalasLayout);
-        bgSalasLayout.setHorizontalGroup(
-            bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgSalasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
-                    .addGroup(bgSalasLayout.createSequentialGroup()
-                        .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addGroup(bgSalasLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputAdminSalasNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnAdminSalasCrearComputador)
-                            .addComponent(txt23)
-                            .addGroup(bgSalasLayout.createSequentialGroup()
-                                .addComponent(btnAdminSalasEliminarSala)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAdminSalasEditarSala))
-                            .addGroup(bgSalasLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputAdminSalasCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 358, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        bgSalasLayout.setVerticalGroup(
-            bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bgSalasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(inputAdminSalasNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(inputAdminSalasCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(btnAdminSalasCrearComputador)
-                .addGap(18, 18, 18)
-                .addComponent(txt23)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(bgSalasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdminSalasEliminarSala)
-                    .addComponent(btnAdminSalasEditarSala))
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-
-        tabbedpane.addTab("Salas", bgSalas);
 
         javax.swing.GroupLayout bgAdminLayout = new javax.swing.GroupLayout(bgAdmin);
         bgAdmin.setLayout(bgAdminLayout);
@@ -1257,6 +1260,104 @@ public class vistaPrograma extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAdminPortatilesEditarPortatilActionPerformed
 
+    private void btnAdminSalasCrearSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasCrearSalaActionPerformed
+        // TODO add your handling code here:
+        
+        String nombre = inputAdminSalasNombre.getText();
+        int capacidad = Integer.parseInt(inputAdminSalasCapacidad.getText());
+
+        if (nombre.isEmpty() || inputAdminSalasCapacidad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
+        } else {
+            
+            boolean consulta = salaDAO.ingresarSala(nombre, capacidad);
+            ArrayList<sala> lista = new ArrayList<>();
+            lista = salaDAO.obtenerSalas();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
+
+            modelo.setRowCount(0);
+
+            for (sala s : lista) {
+                modelo.addRow(new Object[]{
+                    s.getId(),
+                    s.getCapacidad(),
+                    s.getNombre(),
+                });
+            }
+
+            if (consulta) {
+                JOptionPane.showMessageDialog(rootPane, "Sala ingresada satisfactoriamente");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar la sala");
+            }
+
+            inputAdminSalasNombre.setText("");
+            inputAdminSalasCapacidad.setText("");
+
+        }
+        
+    }//GEN-LAST:event_btnAdminSalasCrearSalaActionPerformed
+
+    private void btnAdminSalasEliminarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasEliminarSalaActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable5.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona una sala");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable5.getValueAt(row, 0).toString());
+
+        if (salaDAO.eliminarSala(id)) {
+            JOptionPane.showMessageDialog(rootPane, "Sala eliminada");
+
+            ArrayList<sala> lista = new ArrayList<>();
+            lista = salaDAO.obtenerSalas();
+                    
+            DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
+
+            modelo.setRowCount(0);
+
+            for (sala s : lista) {
+                modelo.addRow(new Object[]{
+                    s.getId(),
+                    s.getCapacidad(),
+                    s.getNombre(),
+                });
+            
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar sala");
+        }
+        
+    }//GEN-LAST:event_btnAdminSalasEliminarSalaActionPerformed
+
+    private void btnAdminSalasEditarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasEditarSalaActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable5.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona una sala");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable5.getValueAt(row, 0).toString());
+        String nombre = jTable5.getValueAt(row, 1).toString();
+        int capacidad = Integer.parseInt(jTable5.getValueAt(row, 2).toString());
+
+        sala s = new sala(id, nombre, capacidad);
+
+        vistaPopupActualizacion ventana = new vistaPopupActualizacion(s);
+        this.setVisible(false);
+        ventana.setVisible(true);
+        
+    }//GEN-LAST:event_btnAdminSalasEditarSalaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1304,7 +1405,7 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminPortatilesCrearPortatil;
     private javax.swing.JButton btnAdminPortatilesEditarPortatil;
     private javax.swing.JButton btnAdminPortatilesEliminarPortatil;
-    private javax.swing.JButton btnAdminSalasCrearComputador;
+    private javax.swing.JButton btnAdminSalasCrearSala;
     private javax.swing.JButton btnAdminSalasEditarSala;
     private javax.swing.JButton btnAdminSalasEliminarSala;
     private javax.swing.JButton btnEstudianteCerrarSesion;

@@ -83,6 +83,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnActualizarPortatil" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="btnActualizarSala" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="136" max="32767" attributes="0"/>
               </Group>
@@ -129,7 +130,9 @@
                       <Component id="btnActualizarProfe" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnActualizarPortatil" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="119" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnActualizarSala" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="84" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -308,6 +311,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarPortatilActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnActualizarSala">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar sala"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarSalaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

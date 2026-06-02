@@ -40,7 +40,7 @@ public class salaDAO {
 
     }
 
-    public static boolean eliminarSaña(int id) {
+    public static boolean eliminarSala(int id) {
         Connection con = coneccionDB.conectarDB();
 
         try {
