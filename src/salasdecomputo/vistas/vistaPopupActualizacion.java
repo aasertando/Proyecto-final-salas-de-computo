@@ -7,7 +7,10 @@ package salasdecomputo.vistas;
 import com.sun.jdi.connect.spi.Connection;
 import java.awt.HeadlessException;
 import java.awt.Label;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import salasdecomputo.clases.computador;
+import salasdecomputo.clases.computadorDAO;
 import salasdecomputo.clases.controladores.coneccionDB;
 import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
@@ -33,6 +36,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
     estudiante e;
     portatil po;
     sala s;
+    computador c;
 
     public vistaPopupActualizacion() {
         initComponents();
@@ -50,6 +54,8 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         jRadioButton1.setSelected(true);
         btnActualizar.setVisible(false);
 
+        txt6.setVisible(false);
+        comboIdPerteneciente.setVisible(false);
         inputNombre.setText(p.getNombre());
         inputContraseña.setText(p.getContraseña());
 
@@ -76,6 +82,8 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         btnActualizar.setVisible(true);
         this.e = e;
 
+        txt6.setVisible(false);
+        comboIdPerteneciente.setVisible(false);
         inputNombre.setText(e.getNombre());
         inputContraseña.setText(e.getContraseña());
 
@@ -97,6 +105,8 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         jRadioButton1.setText("Disponible");
         jRadioButton2.setText("Ocupado");
 
+        txt6.setVisible(false);
+        comboIdPerteneciente.setVisible(false);
         txt3.setVisible(false);
         comboCarrera.setVisible(false);
         comboHoraFin.setVisible(false);
@@ -117,7 +127,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         } else {
             jRadioButton1.setSelected(true);
         }
-        
+
         inputNombre.setText(po.getEspecificaciones());
 
     }
@@ -126,6 +136,36 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         initComponents();
 
         this.s = s;
+        this.setLocationRelativeTo(null);
+
+        jRadioButton1.setVisible(false);
+        jRadioButton2.setVisible(false);
+
+        txt6.setVisible(false);
+        comboIdPerteneciente.setVisible(false);
+        txt3.setVisible(false);
+        comboCarrera.setVisible(false);
+        comboHoraFin.setVisible(false);
+        txt4.setVisible(false);
+        comboHoraInicio.setVisible(false);
+        txt5.setVisible(false);
+        btnActualizar.setVisible(false);
+        btnActualizarProfe.setVisible(false);
+        btnActualizarPortatil.setVisible(false);
+        jLabel1.setText("Actualizar sala");
+
+        txt1.setText("Nombre");
+        txt2.setText("Capacidad");
+
+        inputNombre.setText(s.getNombre());
+        inputContraseña.setText(String.valueOf(s.getCapacidad()));
+
+    }
+
+    public vistaPopupActualizacion(computador c) {
+        initComponents();
+
+        this.c = c;
         this.setLocationRelativeTo(null);
 
         jRadioButton1.setVisible(false);
@@ -140,13 +180,20 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         btnActualizar.setVisible(false);
         btnActualizarProfe.setVisible(false);
         btnActualizarPortatil.setVisible(false);
+        btnActualizarSala.setVisible(false);
         jLabel1.setText("Actualizar sala");
 
         txt1.setText("Nombre");
         txt2.setText("Capacidad");
-        
-        inputNombre.setText(s.getNombre());
-        inputContraseña.setText(String.valueOf(s.getCapacidad()));
+        inputContraseña.setVisible(false);
+
+        inputNombre.setText(c.getEspecificaciones());
+
+        ArrayList<sala> listaIDSala = salaDAO.obtenerSalas();
+
+        for (sala si : listaIDSala) {
+            comboIdPerteneciente.addItem(String.valueOf(si.getId()));
+        }
 
     }
 
@@ -178,6 +225,9 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         btnActualizarProfe = new javax.swing.JButton();
         btnActualizarPortatil = new javax.swing.JButton();
         btnActualizarSala = new javax.swing.JButton();
+        btnActualizarComputador = new javax.swing.JButton();
+        txt6 = new javax.swing.JLabel();
+        comboIdPerteneciente = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,6 +273,12 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
         btnActualizarSala.setText("Actualizar sala");
         btnActualizarSala.addActionListener(this::btnActualizarSalaActionPerformed);
 
+        btnActualizarComputador.setText("Actualizar computador");
+        btnActualizarComputador.addActionListener(this::btnActualizarComputadorActionPerformed);
+
+        txt6.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txt6.setText("Sala perteneciente");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -261,7 +317,14 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
                         .addComponent(btnActualizarProfe)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnActualizarPortatil))
-                    .addComponent(btnActualizarSala))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(btnActualizarSala)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnActualizarComputador))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(txt6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboIdPerteneciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
@@ -293,14 +356,20 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt5)
                     .addComponent(comboHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt6)
+                    .addComponent(comboIdPerteneciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnActualizarProfe)
                     .addComponent(btnActualizarPortatil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnActualizarSala)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizarSala)
+                    .addComponent(btnActualizarComputador))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -422,6 +491,27 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnActualizarSalaActionPerformed
 
+    private void btnActualizarComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarComputadorActionPerformed
+        // TODO add your handling code here:
+        
+        String spec = inputNombre.getText();
+        
+        comboIdPerteneciente.setSelectedItem(c.getSalaPerteneciente());
+        
+        int idPerteneciente = Integer.parseInt(comboIdPerteneciente.getSelectedItem().toString());
+
+        if (computadorDAO.actualizarComputador(c.getId(), spec, idPerteneciente)) {
+            JOptionPane.showMessageDialog(rootPane, "Ingresado");
+            this.setVisible(false);
+            vistaPrograma ventana = new vistaPrograma();
+            ventana.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No se pudo ingresar");
+        }
+        
+    }//GEN-LAST:event_btnActualizarComputadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -450,6 +540,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizarComputador;
     private javax.swing.JButton btnActualizarPortatil;
     private javax.swing.JButton btnActualizarProfe;
     private javax.swing.JButton btnActualizarSala;
@@ -457,6 +548,7 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboCarrera;
     private javax.swing.JComboBox<String> comboHoraFin;
     private javax.swing.JComboBox<String> comboHoraInicio;
+    private javax.swing.JComboBox<String> comboIdPerteneciente;
     private javax.swing.JTextField inputContraseña;
     private javax.swing.JTextField inputNombre;
     private javax.swing.JLabel jLabel1;
@@ -467,5 +559,6 @@ public class vistaPopupActualizacion extends javax.swing.JFrame {
     private javax.swing.JLabel txt3;
     private javax.swing.JLabel txt4;
     private javax.swing.JLabel txt5;
+    private javax.swing.JLabel txt6;
     // End of variables declaration//GEN-END:variables
 }

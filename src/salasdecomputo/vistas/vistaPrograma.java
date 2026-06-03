@@ -105,6 +105,12 @@ public class vistaPrograma extends javax.swing.JFrame {
             });
         }
 
+        ArrayList<sala> listaIDSala = salaDAO.obtenerSalas();
+
+        for (sala si : listaIDSala) {
+            comboAdminComputadoresSalaPerteneciente.addItem(String.valueOf(si.getId()));
+        }
+
     }
 
     public vistaPrograma(estudiante e) {
@@ -680,6 +686,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnAdminComputadoresEliminarComputador.addActionListener(this::btnAdminComputadoresEliminarComputadorActionPerformed);
 
         btnAdminComputadoresEditarComputador.setText("Editar computador");
+        btnAdminComputadoresEditarComputador.addActionListener(this::btnAdminComputadoresEditarComputadorActionPerformed);
 
         checkAdminComputadoresNoAsignado.setText("En bodega");
 
@@ -1258,12 +1265,11 @@ public class vistaPrograma extends javax.swing.JFrame {
     private void btnAdminSalasCrearSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasCrearSalaActionPerformed
         // TODO add your handling code here:
 
-        String nombre = inputAdminSalasNombre.getText();
-        int capacidad = Integer.parseInt(inputAdminSalasCapacidad.getText());
-
-        if (nombre.isEmpty() || inputAdminSalasCapacidad.getText().isEmpty()) {
+        if (inputAdminSalasNombre.getText().isEmpty() || inputAdminSalasCapacidad.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
         } else {
+        String nombre = inputAdminSalasNombre.getText();
+        int capacidad = Integer.parseInt(inputAdminSalasCapacidad.getText());
 
             boolean consulta = salaDAO.ingresarSala(nombre, capacidad);
             ArrayList<sala> lista = new ArrayList<>();
@@ -1282,6 +1288,11 @@ public class vistaPrograma extends javax.swing.JFrame {
 
             if (consulta) {
                 JOptionPane.showMessageDialog(rootPane, "Sala ingresada satisfactoriamente");
+                ArrayList<sala> listaIDSala = salaDAO.obtenerSalas();
+
+                for (sala si : listaIDSala) {
+                    comboAdminComputadoresSalaPerteneciente.addItem(String.valueOf(si.getId()));
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar la sala");
             }
@@ -1321,6 +1332,12 @@ public class vistaPrograma extends javax.swing.JFrame {
                     s.getCapacidad(),
                     s.getNombre(),});
 
+            }
+
+            ArrayList<sala> listaIDSala = salaDAO.obtenerSalas();
+
+            for (sala si : listaIDSala) {
+                comboAdminComputadoresSalaPerteneciente.addItem(String.valueOf(si.getId()));
             }
 
         } else {
@@ -1399,7 +1416,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     private void btnAdminComputadoresEliminarComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminComputadoresEliminarComputadorActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable4.getSelectedRow();
 
         if (row == -1) {
@@ -1430,8 +1447,30 @@ public class vistaPrograma extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar computador");
         }
-        
+
     }//GEN-LAST:event_btnAdminComputadoresEliminarComputadorActionPerformed
+
+    private void btnAdminComputadoresEditarComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminComputadoresEditarComputadorActionPerformed
+        // TODO add your handling code here:
+
+        int row = jTable4.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un computador");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable4.getValueAt(row, 0).toString());
+        String spec = jTable4.getValueAt(row, 1).toString();
+        int idPerteneciente = Integer.parseInt(jTable4.getValueAt(row, 2).toString());
+
+        computador c = new computador(id, spec, idPerteneciente);
+
+        vistaPopupActualizacion ventana = new vistaPopupActualizacion(c);
+        this.setVisible(false);
+        ventana.setVisible(true);
+
+    }//GEN-LAST:event_btnAdminComputadoresEditarComputadorActionPerformed
 
     /**
      * @param args the command line arguments
