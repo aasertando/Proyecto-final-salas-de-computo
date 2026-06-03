@@ -16,7 +16,7 @@ import salasdecomputo.clases.controladores.coneccionDB;
  * @author aser
  */
 public class salaDAO {
-    
+
     public static boolean ingresarSala(String nombre, int capacidad) {
 
         Connection con = coneccionDB.conectarDB();
@@ -60,61 +60,61 @@ public class salaDAO {
         }
     }
 
-    public static ArrayList<sala> obtenerSalas(){
-        
+    public static ArrayList<sala> obtenerSalas() {
+
         ArrayList<sala> lista = new ArrayList<>();
-        
+
         Connection con = coneccionDB.conectarDB();
-        
-        try{
-            
+
+        try {
+
             PreparedStatement ps = con.prepareStatement("SELECT * FROM salas");
-            
+
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 int id = rs.getInt("idSala");
                 String nombre = rs.getString("nombre");
                 int capacidad = rs.getInt("capacidad");
-                
+
                 sala s = new sala(id, nombre, capacidad);
-                
+
                 lista.add(s);
-                
+
             }
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             System.out.println(e);
             System.out.println("ERROR");
             System.out.println(e.getErrorCode());
         }
         return lista;
     }
-    
-    public static boolean actualizarSala(int id, String nombre, int capacidad){
-        
+
+    public static boolean actualizarSala(int id, String nombre, int capacidad) {
+
         Connection con = coneccionDB.conectarDB();
-        
-        try{
-            
+
+        try {
+
             PreparedStatement ps = con.prepareStatement("UPDATE salas SET nombre = ?, capacidad = ? WHERE idSala = ?");
-            
+
             ps.setString(1, nombre);
             ps.setInt(2, capacidad);
             ps.setInt(3, id);
 
             ps.executeUpdate();
-            
+
             return true;
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             System.out.println("error");
             System.out.println(e);
             return false;
         }
-        
+
     }
-    
+
     public static sala buscarSala(int idSala) {
 
         Connection con = coneccionDB.conectarDB();
@@ -132,7 +132,6 @@ public class salaDAO {
                 String nombre = rs.getString("nombre");
                 int capacidad = rs.getInt("capacidad");
 
-                
                 sala s = new sala(id, nombre, capacidad);
                 return s;
 
@@ -147,6 +146,68 @@ public class salaDAO {
         //si no se encontró
         return null;
     }
-    
-    
+
+    public static ArrayList<sala> obtenerSalasDisponibles() {
+
+        ArrayList<sala> lista = new ArrayList<>();
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM salas WHERE idSala NOT IN (SELECT idRecurso FROM prestamos WHERE tipo = 'sala' AND estado = 'activo')");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("idSala");
+                String nombre = rs.getString("nombre");
+                int capacidad = rs.getInt("capacidad");
+
+                sala s = new sala(id, nombre, capacidad);
+                lista.add(s);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("ERROR");
+            System.out.println(e.getErrorCode());
+        }
+
+        return lista;
+    }
+
+    public static boolean salaDisponible(int idSala) {
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            // Obtenemos la capacidad de la sala
+            PreparedStatement psCapacidad = con.prepareStatement("SELECT capacidad FROM salas WHERE idSala = ?");
+            psCapacidad.setInt(1, idSala);
+            ResultSet rsCapacidad = psCapacidad.executeQuery();
+
+            if (rsCapacidad.next()) {
+                int capacidad = rsCapacidad.getInt("capacidad");
+
+                // Contamos cuantos computadores tiene ya esa sala
+                PreparedStatement psConteo = con.prepareStatement("SELECT COUNT(*) FROM computador WHERE salaPerteneciente = ?");
+                psConteo.setInt(1, idSala);
+                ResultSet rsConteo = psConteo.executeQuery();
+
+                if (rsConteo.next()) {
+                    int ocupados = rsConteo.getInt(1);
+                    return ocupados < capacidad;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("ERROR");
+            System.out.println(e.getErrorCode());
+        }
+
+        return false;
+    }
+
 }

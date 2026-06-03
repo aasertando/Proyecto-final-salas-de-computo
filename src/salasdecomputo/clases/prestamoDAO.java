@@ -191,4 +191,81 @@ public class prestamoDAO {
         return lista;
     }
 
+    public static boolean prestarSala(int idProfesor, int idSala, int horaInicio, int horaFin) {
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement("INSERT INTO prestamos (idUsuario, idRecurso, tipo, horaInicio, horaFin, estado) VALUES (?, ?, 'sala', ?, ?, 'activo')");
+            ps.setInt(1, idProfesor);
+            ps.setInt(2, idSala);
+            ps.setInt(3, horaInicio);
+            ps.setInt(4, horaFin);
+            ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("ERROR");
+            System.out.println(e.getErrorCode());
+            return false;
+        }
+    }
+
+    public static boolean devolverSala(int idPrestamo) {
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement("UPDATE prestamos SET estado = 'devuelto' WHERE idPrestamo = ?");
+            ps.setInt(1, idPrestamo);
+            ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("ERROR");
+            System.out.println(e.getErrorCode());
+            return false;
+        }
+    }
+
+    public static ArrayList<prestamo> obtenerPrestamosSalasProfesor(int idProfesor) {
+
+        ArrayList<prestamo> lista = new ArrayList<>();
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM prestamos WHERE tipo = 'sala' AND estado = 'activo' AND idUsuario = ?");
+            ps.setInt(1, idProfesor);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int idPrestamo = rs.getInt("idPrestamo");
+                int idUsuario = rs.getInt("idUsuario");
+                int idRecurso = rs.getInt("idRecurso");
+                String tipo = rs.getString("tipo");
+                int horaInicio = rs.getInt("horaInicio");
+                int horaFin = rs.getInt("horaFin");
+                String estado = rs.getString("estado");
+
+                prestamo p = new prestamo(idPrestamo, idUsuario, idRecurso, tipo, horaInicio, horaFin, estado);
+                lista.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("ERROR");
+            System.out.println(e.getErrorCode());
+        }
+
+        return lista;
+    }
+
 }
