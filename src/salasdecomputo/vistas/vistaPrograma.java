@@ -13,6 +13,8 @@ import salasdecomputo.clases.estudiante;
 import salasdecomputo.clases.estudianteDAO;
 import salasdecomputo.clases.portatil;
 import salasdecomputo.clases.portatilDAO;
+import salasdecomputo.clases.prestamo;
+import salasdecomputo.clases.prestamoDAO;
 import salasdecomputo.clases.profesor;
 import salasdecomputo.clases.profesorDAO;
 import salasdecomputo.clases.sala;
@@ -113,6 +115,8 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     }
 
+    estudiante estudianteActivo;
+
     public vistaPrograma(estudiante e) {
         initComponents();
         txt2.setText("Bienvenido " + e.getNombre());
@@ -120,7 +124,16 @@ public class vistaPrograma extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(2, false);
         jTabbedPane1.setSelectedIndex(1);
+        this.estudianteActivo = e;
+        
+        comboEstudiantePortatilesDisponibles.removeAllItems();
+        for (portatil p : portatilDAO.obtenerPortatiles()) {
+            comboEstudiantePortatilesDisponibles.addItem(String.valueOf(p.getId()));
+        }
+        
     }
+
+    profesor profesorActivo;
 
     public vistaPrograma(profesor p) {
         initComponents();
@@ -129,6 +142,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(0, false);
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setSelectedIndex(2);
+        this.profesorActivo = p;
     }
 
     /**
@@ -219,7 +233,17 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnEstudianteCerrarSesion = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        txt20 = new javax.swing.JLabel();
+        comboEstudiantePortatilesDisponibles = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        comboEstudianteHoraInicio = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        comboEstudianteHoraFin = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        btnEstudiantePrestarPortatil = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        btnEstudianteDevolverSeleccionado = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txt21 = new javax.swing.JLabel();
         bgProfesor = new javax.swing.JPanel();
@@ -783,7 +807,41 @@ public class vistaPrograma extends javax.swing.JFrame {
         btnEstudianteCerrarSesion.setText("Cerrar sesión");
         btnEstudianteCerrarSesion.addActionListener(this::btnEstudianteCerrarSesionActionPerformed);
 
-        txt20.setText("Prestar portátiles");
+        jLabel10.setText("Portatiles disponibles");
+
+        comboEstudianteHoraInicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+
+        jLabel11.setText("Hora inicio del prestamo");
+
+        comboEstudianteHoraFin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+
+        jLabel12.setText("Hora fin del prestamo");
+
+        btnEstudiantePrestarPortatil.setText("Prestar portatil");
+        btnEstudiantePrestarPortatil.addActionListener(this::btnEstudiantePrestarPortatilActionPerformed);
+
+        jLabel13.setText("Prestamos activos");
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idPrestamo", "idUsuario", "idRecurso", "tipo", "horaInicio", "horaFin"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable6);
+
+        btnEstudianteDevolverSeleccionado.setText("Devolver seleccionado");
+        btnEstudianteDevolverSeleccionado.addActionListener(this::btnEstudianteDevolverSeleccionadoActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -791,15 +849,57 @@ public class vistaPrograma extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt20)
-                .addContainerGap(711, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboEstudiantePortatilesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboEstudianteHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboEstudianteHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEstudiantePrestarPortatil)
+                    .addComponent(jLabel13))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnEstudianteDevolverSeleccionado)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt20)
-                .addContainerGap(702, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboEstudiantePortatilesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(comboEstudianteHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboEstudianteHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEstudiantePrestarPortatil)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEstudianteDevolverSeleccionado)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Prestar portátiles", jPanel2);
@@ -1268,8 +1368,8 @@ public class vistaPrograma extends javax.swing.JFrame {
         if (inputAdminSalasNombre.getText().isEmpty() || inputAdminSalasCapacidad.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
         } else {
-        String nombre = inputAdminSalasNombre.getText();
-        int capacidad = Integer.parseInt(inputAdminSalasCapacidad.getText());
+            String nombre = inputAdminSalasNombre.getText();
+            int capacidad = Integer.parseInt(inputAdminSalasCapacidad.getText());
 
             boolean consulta = salaDAO.ingresarSala(nombre, capacidad);
             ArrayList<sala> lista = new ArrayList<>();
@@ -1472,6 +1572,90 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdminComputadoresEditarComputadorActionPerformed
 
+    private void btnEstudiantePrestarPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudiantePrestarPortatilActionPerformed
+        // TODO add your handling code here:
+
+        if (comboEstudiantePortatilesDisponibles.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(rootPane, "No hay portátiles disponibles");
+            return;
+        }
+
+        int idPortatil = Integer.parseInt(comboEstudiantePortatilesDisponibles.getSelectedItem().toString());
+        int horaInicio = Integer.parseInt(comboEstudianteHoraInicio.getSelectedItem().toString());
+        int horaFin = Integer.parseInt(comboEstudianteHoraFin.getSelectedItem().toString());
+
+        boolean consulta = prestamoDAO.prestarPortatil(estudianteActivo.getId(), idPortatil, horaInicio, horaFin);
+
+        if (consulta) {
+            JOptionPane.showMessageDialog(rootPane, "Portátil prestado satisfactoriamente");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No se pudo realizar el préstamo");
+        }
+
+        // Recargar combo de portátiles disponibles
+        comboEstudiantePortatilesDisponibles.removeAllItems();
+        for (portatil p : portatilDAO.obtenerPortatiles()) {
+            comboEstudiantePortatilesDisponibles.addItem(String.valueOf(p.getId()));
+        }
+
+        // Recargar tabla de préstamos activos
+        ArrayList<prestamo> lista = prestamoDAO.obtenerPrestamosPortatilesEstudiante(estudianteActivo.getId());
+        DefaultTableModel modelo = (DefaultTableModel) jTable6.getModel();
+        modelo.setRowCount(0);
+        for (prestamo p : lista) {
+            modelo.addRow(new Object[]{
+                p.getIdPrestamo(),
+                p.getIdUsuario(),
+                p.getIdRecurso(),
+                p.getTipo(),
+                p.getHoraInicio(),
+                p.getHorafin()
+            });
+        }
+
+    }//GEN-LAST:event_btnEstudiantePrestarPortatilActionPerformed
+
+    private void btnEstudianteDevolverSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteDevolverSeleccionadoActionPerformed
+        // TODO add your handling code here:
+
+        int row = jTable6.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un préstamo");
+            return;
+        }
+
+        int idPrestamo = Integer.parseInt(jTable6.getValueAt(row, 0).toString());
+
+        boolean consulta = prestamoDAO.devolverPortatil(idPrestamo);
+
+        if (consulta) {
+            JOptionPane.showMessageDialog(rootPane, "Portátil devuelto satisfactoriamente");
+        // Recargar combo de portátiles disponibles
+        comboEstudiantePortatilesDisponibles.removeAllItems();
+        for (portatil p : portatilDAO.obtenerPortatiles()) {
+            comboEstudiantePortatilesDisponibles.addItem(String.valueOf(p.getId()));
+        }
+
+        // Recargar tabla de préstamos activos
+        ArrayList<prestamo> lista = prestamoDAO.obtenerPrestamosPortatilesEstudiante(estudianteActivo.getId());
+        DefaultTableModel modelo = (DefaultTableModel) jTable6.getModel();
+        modelo.setRowCount(0);
+        for (prestamo p : lista) {
+            modelo.addRow(new Object[]{
+                p.getIdPrestamo(),
+                p.getIdUsuario(),
+                p.getIdRecurso(),
+                p.getTipo(),
+                p.getHoraInicio(),
+                p.getHorafin()
+            });
+        }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error al devolver el portátil");
+        }
+        
+    }//GEN-LAST:event_btnEstudianteDevolverSeleccionadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1523,6 +1707,8 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminSalasEditarSala;
     private javax.swing.JButton btnAdminSalasEliminarSala;
     private javax.swing.JButton btnEstudianteCerrarSesion;
+    private javax.swing.JButton btnEstudianteDevolverSeleccionado;
+    private javax.swing.JButton btnEstudiantePrestarPortatil;
     private javax.swing.JButton btnProfesorCerrarSesion;
     private javax.swing.JCheckBox checkAdminComputadoresNoAsignado;
     private javax.swing.JComboBox<String> comboAdminCarrera;
@@ -1530,6 +1716,9 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboAdminDepaProfe;
     private javax.swing.JComboBox<String> comboAdminFinProfe;
     private javax.swing.JComboBox<String> comboAdminInicioProfe;
+    private javax.swing.JComboBox<String> comboEstudianteHoraFin;
+    private javax.swing.JComboBox<String> comboEstudianteHoraInicio;
+    private javax.swing.JComboBox<String> comboEstudiantePortatilesDisponibles;
     private javax.swing.JTextField inputAdminComputadoresEspecificaciones;
     private javax.swing.JTextField inputAdminContraseñaEstudiante;
     private javax.swing.JTextField inputAdminContraseñaProfe;
@@ -1539,6 +1728,10 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JTextField inputAdminSalasCapacidad;
     private javax.swing.JTextField inputAdminSalasNombre;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1554,6 +1747,7 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -1562,6 +1756,7 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
     private javax.swing.JTabbedPane tabbedpane;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt10;
@@ -1572,7 +1767,6 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JLabel txt15;
     private javax.swing.JLabel txt16;
     private javax.swing.JLabel txt2;
-    private javax.swing.JLabel txt20;
     private javax.swing.JLabel txt21;
     private javax.swing.JLabel txt22;
     private javax.swing.JLabel txt23;
