@@ -18,7 +18,7 @@ import salasdecomputo.clases.controladores.coneccionDB;
 public class computadorDAO {
     
     //si regresa null los credenciales ingresados son invalidos
-    public static boolean ingresarComputador(String especificaciones, String salaPerteneciente) {
+    public static boolean ingresarComputador(String especificaciones, int salaPerteneciente) {
 
         Connection con = coneccionDB.conectarDB();
 
@@ -26,7 +26,7 @@ public class computadorDAO {
 
             PreparedStatement ps = con.prepareStatement("INSERT INTO computador (especificaciones, salaPerteneciente) VALUES (?, ?)");
             ps.setString(1, especificaciones);
-            ps.setString(2, salaPerteneciente);
+            ps.setInt(2, salaPerteneciente);
 
             ps.executeUpdate();
 

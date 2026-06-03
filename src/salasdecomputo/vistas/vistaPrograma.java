@@ -207,8 +207,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         comboAdminComputadoresSalaPerteneciente = new javax.swing.JComboBox<>();
         btnAdminComputadoresEliminarComputador = new javax.swing.JButton();
         btnAdminComputadoresEditarComputador = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        inputAdminComputadoresCantidadAIngresar = new javax.swing.JTextField();
+        checkAdminComputadoresNoAsignado = new javax.swing.JCheckBox();
         bgEstudiante = new javax.swing.JPanel();
         txt2 = new javax.swing.JLabel();
         btnEstudianteCerrarSesion = new javax.swing.JButton();
@@ -653,6 +652,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         jLabel5.setText("Especificaciones:");
 
         btnAdminComputadoresCrearComputador.setText("Crear computador");
+        btnAdminComputadoresCrearComputador.addActionListener(this::btnAdminComputadoresCrearComputadorActionPerformed);
 
         txt7.setText("Selecccione un computador para eliminarlo o actualizar sus datos");
 
@@ -677,10 +677,11 @@ public class vistaPrograma extends javax.swing.JFrame {
         jLabel6.setText("Sala perteneciente");
 
         btnAdminComputadoresEliminarComputador.setText("Eliminar computador");
+        btnAdminComputadoresEliminarComputador.addActionListener(this::btnAdminComputadoresEliminarComputadorActionPerformed);
 
         btnAdminComputadoresEditarComputador.setText("Editar computador");
 
-        jLabel10.setText("Cantidad a ingresar");
+        checkAdminComputadoresNoAsignado.setText("En bodega");
 
         javax.swing.GroupLayout bgComputadoresLayout = new javax.swing.GroupLayout(bgComputadores);
         bgComputadores.setLayout(bgComputadoresLayout);
@@ -701,16 +702,14 @@ public class vistaPrograma extends javax.swing.JFrame {
                             .addGroup(bgComputadoresLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboAdminComputadoresSalaPerteneciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboAdminComputadoresSalaPerteneciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkAdminComputadoresNoAsignado))
                             .addComponent(txt7)
                             .addGroup(bgComputadoresLayout.createSequentialGroup()
                                 .addComponent(btnAdminComputadoresEliminarComputador)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAdminComputadoresEditarComputador))
-                            .addGroup(bgComputadoresLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inputAdminComputadoresCantidadAIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnAdminComputadoresEditarComputador)))
                         .addGap(0, 358, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -726,22 +725,19 @@ public class vistaPrograma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgComputadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(comboAdminComputadoresSalaPerteneciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bgComputadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgComputadoresLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(16, 16, 16)
-                        .addComponent(btnAdminComputadoresCrearComputador)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(bgComputadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdminComputadoresEliminarComputador)
-                            .addComponent(btnAdminComputadoresEditarComputador)))
-                    .addComponent(inputAdminComputadoresCantidadAIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bgComputadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(comboAdminComputadoresSalaPerteneciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkAdminComputadoresNoAsignado)))
+                .addGap(43, 43, 43)
+                .addComponent(btnAdminComputadoresCrearComputador)
+                .addGap(18, 18, 18)
+                .addComponent(txt7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(bgComputadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdminComputadoresEliminarComputador)
+                    .addComponent(btnAdminComputadoresEditarComputador))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -1173,7 +1169,7 @@ public class vistaPrograma extends javax.swing.JFrame {
         if (espec.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
         } else {
-            
+
             boolean consulta = portatilDAO.ingresarPortatil(espec);
             ArrayList<portatil> lista = new ArrayList<>();
             lista = portatilDAO.obtenerPortatiles();
@@ -1204,8 +1200,8 @@ public class vistaPrograma extends javax.swing.JFrame {
 
     private void btnAdminPortatilesEliminarPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPortatilesEliminarPortatilActionPerformed
         // TODO add your handling code here:
-        
-         int row = jTable3.getSelectedRow();
+
+        int row = jTable3.getSelectedRow();
 
         if (row == -1) {
             JOptionPane.showMessageDialog(rootPane, "Selecciona un portatil");
@@ -1228,19 +1224,18 @@ public class vistaPrograma extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{
                     po.getId(),
                     po.getEspecificaciones(),
-                    po.isDisponible(),
-                });
+                    po.isDisponible(),});
             }
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar portatil");
         }
-        
+
     }//GEN-LAST:event_btnAdminPortatilesEliminarPortatilActionPerformed
 
     private void btnAdminPortatilesEditarPortatilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminPortatilesEditarPortatilActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable3.getSelectedRow();
 
         if (row == -1) {
@@ -1257,19 +1252,19 @@ public class vistaPrograma extends javax.swing.JFrame {
         vistaPopupActualizacion ventana = new vistaPopupActualizacion(po);
         this.setVisible(false);
         ventana.setVisible(true);
-        
+
     }//GEN-LAST:event_btnAdminPortatilesEditarPortatilActionPerformed
 
     private void btnAdminSalasCrearSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasCrearSalaActionPerformed
         // TODO add your handling code here:
-        
+
         String nombre = inputAdminSalasNombre.getText();
         int capacidad = Integer.parseInt(inputAdminSalasCapacidad.getText());
 
         if (nombre.isEmpty() || inputAdminSalasCapacidad.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
         } else {
-            
+
             boolean consulta = salaDAO.ingresarSala(nombre, capacidad);
             ArrayList<sala> lista = new ArrayList<>();
             lista = salaDAO.obtenerSalas();
@@ -1282,8 +1277,7 @@ public class vistaPrograma extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{
                     s.getId(),
                     s.getCapacidad(),
-                    s.getNombre(),
-                });
+                    s.getNombre(),});
             }
 
             if (consulta) {
@@ -1296,12 +1290,12 @@ public class vistaPrograma extends javax.swing.JFrame {
             inputAdminSalasCapacidad.setText("");
 
         }
-        
+
     }//GEN-LAST:event_btnAdminSalasCrearSalaActionPerformed
 
     private void btnAdminSalasEliminarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasEliminarSalaActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable5.getSelectedRow();
 
         if (row == -1) {
@@ -1316,7 +1310,7 @@ public class vistaPrograma extends javax.swing.JFrame {
 
             ArrayList<sala> lista = new ArrayList<>();
             lista = salaDAO.obtenerSalas();
-                    
+
             DefaultTableModel modelo = (DefaultTableModel) jTable5.getModel();
 
             modelo.setRowCount(0);
@@ -1325,20 +1319,19 @@ public class vistaPrograma extends javax.swing.JFrame {
                 modelo.addRow(new Object[]{
                     s.getId(),
                     s.getCapacidad(),
-                    s.getNombre(),
-                });
-            
+                    s.getNombre(),});
+
             }
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Error al eliminar sala");
         }
-        
+
     }//GEN-LAST:event_btnAdminSalasEliminarSalaActionPerformed
 
     private void btnAdminSalasEditarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSalasEditarSalaActionPerformed
         // TODO add your handling code here:
-        
+
         int row = jTable5.getSelectedRow();
 
         if (row == -1) {
@@ -1355,8 +1348,90 @@ public class vistaPrograma extends javax.swing.JFrame {
         vistaPopupActualizacion ventana = new vistaPopupActualizacion(s);
         this.setVisible(false);
         ventana.setVisible(true);
-        
+
     }//GEN-LAST:event_btnAdminSalasEditarSalaActionPerformed
+
+    private void btnAdminComputadoresCrearComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminComputadoresCrearComputadorActionPerformed
+        // TODO add your handling code here:
+
+        String spec = inputAdminComputadoresEspecificaciones.getText();
+        int sala = 0;
+
+        if (checkAdminComputadoresNoAsignado.isSelected()) {
+            sala = 0;
+        } else {
+            sala = Integer.parseInt(comboAdminComputadoresSalaPerteneciente.getSelectedItem().toString());
+        }
+
+        sala s = salaDAO.buscarSala(sala);
+
+        if (spec.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "debe llenar los campos");
+        } else {
+
+            boolean consulta = computadorDAO.ingresarComputador(spec, sala);
+
+            ArrayList<computador> lista = new ArrayList<>();
+            lista = computadorDAO.obtenerComputadores();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
+
+            modelo.setRowCount(0);
+
+            for (computador c : lista) {
+                modelo.addRow(new Object[]{
+                    c.getId(),
+                    c.getEspecificaciones(),
+                    c.getSalaPerteneciente(),});
+            }
+
+            if (consulta) {
+                JOptionPane.showMessageDialog(rootPane, "computador ingresada satisfactoriamente");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se ha podido ingresar el computador");
+            }
+
+            inputAdminComputadoresEspecificaciones.setText("");
+
+        }
+
+    }//GEN-LAST:event_btnAdminComputadoresCrearComputadorActionPerformed
+
+    private void btnAdminComputadoresEliminarComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminComputadoresEliminarComputadorActionPerformed
+        // TODO add your handling code here:
+        
+        int row = jTable4.getSelectedRow();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona un computador");
+            return;
+        }
+
+        int id = Integer.parseInt(jTable4.getValueAt(row, 0).toString());
+
+        if (computadorDAO.eliminarComputador(id)) {
+            JOptionPane.showMessageDialog(rootPane, "Computador eliminada");
+
+            ArrayList<computador> lista = new ArrayList<>();
+            lista = computadorDAO.obtenerComputadores();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
+
+            modelo.setRowCount(0);
+
+            for (computador c : lista) {
+                modelo.addRow(new Object[]{
+                    c.getId(),
+                    c.getEspecificaciones(),
+                    c.getSalaPerteneciente(),});
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error al eliminar computador");
+        }
+        
+    }//GEN-LAST:event_btnAdminComputadoresEliminarComputadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1410,12 +1485,12 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminSalasEliminarSala;
     private javax.swing.JButton btnEstudianteCerrarSesion;
     private javax.swing.JButton btnProfesorCerrarSesion;
+    private javax.swing.JCheckBox checkAdminComputadoresNoAsignado;
     private javax.swing.JComboBox<String> comboAdminCarrera;
     private javax.swing.JComboBox<String> comboAdminComputadoresSalaPerteneciente;
     private javax.swing.JComboBox<String> comboAdminDepaProfe;
     private javax.swing.JComboBox<String> comboAdminFinProfe;
     private javax.swing.JComboBox<String> comboAdminInicioProfe;
-    private javax.swing.JTextField inputAdminComputadoresCantidadAIngresar;
     private javax.swing.JTextField inputAdminComputadoresEspecificaciones;
     private javax.swing.JTextField inputAdminContraseñaEstudiante;
     private javax.swing.JTextField inputAdminContraseñaProfe;
@@ -1425,7 +1500,6 @@ public class vistaPrograma extends javax.swing.JFrame {
     private javax.swing.JTextField inputAdminSalasCapacidad;
     private javax.swing.JTextField inputAdminSalasNombre;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -115,4 +115,38 @@ public class salaDAO {
         
     }
     
+    public static sala buscarSala(int idSala) {
+
+        Connection con = coneccionDB.conectarDB();
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement("SELECT *  FROM salas WHERE idSala = ?");
+            ps.setInt(1, idSala);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                int id = rs.getInt("idSala");
+                String nombre = rs.getString("nombre");
+                int capacidad = rs.getInt("capacidad");
+
+                
+                sala s = new sala(id, nombre, capacidad);
+                return s;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("errror\n------------------------------------");
+            System.out.println(e);
+        }
+
+        //si no se encontró
+        return null;
+    }
+    
+    
 }
